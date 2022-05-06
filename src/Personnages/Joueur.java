@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Joueur extends Personnages {
     private List<Item> inventaire;
-    private Item armeActive;
+    private Arme armeActive;
 
-    public Joueur(String nom, int vie, int attaque,int niveau, int xp,) {
+    public Joueur(String nom, int vie, int attaque,int niveau, int xp) {
         super(nom,vie,attaque,niveau,xp);
 
 
