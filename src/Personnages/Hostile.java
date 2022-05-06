@@ -1,7 +1,7 @@
 package Personnages;
 
 
-import Items.Item;
+import Items.*;
 
 import java.util.Random;
 
@@ -25,8 +25,8 @@ public class Hostile extends Personnages {
             System.out.println("GET NATCHOED!!!!");
         }
         else{
-        joueur.perteVie(this.getAttaque());
-        System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
+            joueur.perteVie(this.getAttaque());
+            System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
 
         }
     }

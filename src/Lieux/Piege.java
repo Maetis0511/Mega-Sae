@@ -1,11 +1,11 @@
-package Lieu;
+package Lieux;
 
-public class Piège {
+public class Piege {
     private String name;
     private int damage;
     private boolean isActive;
 
-    public Piège(int name, int damage) {
+    public Piege(String name, int damage) {
         this.name = name;
         this.damage = damage;
         this.isActive = false;

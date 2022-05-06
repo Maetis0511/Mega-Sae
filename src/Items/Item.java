@@ -17,6 +17,10 @@ public class Item{
         return id;
     }
 
+    public String getNom(){
+        return name;
+    }
+
     public String toString(){
         return name;
     }

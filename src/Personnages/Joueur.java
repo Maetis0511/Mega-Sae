@@ -1,6 +1,6 @@
 package Personnages;
 
-import Items.Item;
+import Items.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,10 @@ public class Joueur extends Personnages {
     private List<Item> inventaire;
     private Item armeActive;
 
-    public Joueur(String nom, int vie, int attaque,int niveau, int xp,List<Item> inventaire, Item armeActive) {
-        super(nom);
-        this.niveau = niveau;
-        this.xp = xp;
-        List<Item> inventaire = new ArrayList<>();
+    public Joueur(String nom, int vie, int attaque,int niveau, int xp,) {
+        super(nom,vie,attaque,niveau,xp);
+
+
         this.inventaire = inventaire;
         this.armeActive = armeActive;
     }
