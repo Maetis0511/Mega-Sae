@@ -10,9 +10,7 @@ public class Joueur extends Personnages {
     private Arme armeActive;
 
     public Joueur(String nom, int vie, int attaque,int niveau, int xp) {
-        super(nom,vie,attaque,niveau,xp);
-
-
+        super(nom,vie,niveau,attaque,xp);
         this.inventaire = inventaire;
         this.armeActive = armeActive;
     }
