@@ -1,14 +1,13 @@
 package Personnages;
 
-public class Personnages{
-    protected String nom;
+public abstract class Combattant extends Personnage {
     protected int vie;
     protected int attaque;
     protected int niveau;
     protected int xp;
 
-    public Personnages(String nom, int vie, int attaque,int niveau, int xp){
-        this.nom=nom;
+    public Combattant(String nom, int vie, int attaque, int niveau, int xp){
+        super(nom);
         this.vie=vie;
         this.attaque=attaque;
         this.niveau=niveau;
@@ -31,20 +30,12 @@ public class Personnages{
         this.xp += xp;
     }
 
-    public String getNom(){
-        return nom;
-    }
-
     public int getVie(){
         return vie;
     }
 
     public int getAttaque(){
         return attaque;
-    }
-
-    public void setNom(String nom){
-        this.nom=nom;
     }
 
     public void setVie(int vie){
@@ -62,4 +53,6 @@ public class Personnages{
     public void gainVie(int vie){
         this.vie+=vie;
     }
+
+    public abstract boolean attaque(Combattant c);
 }

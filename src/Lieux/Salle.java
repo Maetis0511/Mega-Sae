@@ -7,12 +7,14 @@ public class Salle {
     private String nom;
     private String description;
     private List<Piege> pieges;
+    private int niveauSalle;
 
 
-    public Salle(String nom, String description) {
+    public Salle(String nom, String description, int niveauSalle) {
         this.nom = nom;
         this.description = description;
         this.pieges = new ArrayList<>();
+        this.niveauSalle = niveauSalle;
     }
 
     public String getNom() {
