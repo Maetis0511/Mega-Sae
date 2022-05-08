@@ -50,9 +50,5 @@ public abstract class Combattant extends Personnage {
         this.vie-=vie;
     }
 
-    public void gainVie(int vie){
-        this.vie+=vie;
-    }
-
-    public abstract boolean attaque(Combattant c);
+    public abstract void attaque(Combattant c);
 }

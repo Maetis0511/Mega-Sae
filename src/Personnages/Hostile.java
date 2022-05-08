@@ -19,7 +19,7 @@ public class Hostile extends Combattant {
         this.loot = null;
     }
 
-    public boolean attaque(Combattant c){
+    public void attaque(Combattant c){
         Random r = new Random();
         int nb = r.nextInt(1000);
         if(nb==1) {
@@ -30,6 +30,5 @@ public class Hostile extends Combattant {
             c.perteVie(this.getAttaque());
             System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
         }
-        return true;
     }
 }

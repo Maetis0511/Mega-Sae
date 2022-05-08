@@ -2,6 +2,7 @@ package Personnages;
 
 import Items.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +12,10 @@ public class Joueur extends Combattant {
 
     public Joueur(String nom, int vie, int attaque) {
         super(nom,vie,attaque,1,0);
-        this.inventaire = inventaire;
+        this.inventaire = new ArrayList<>(2);
+        for (int i = 0; i < 2; i++) {
+            this.inventaire.add(new ArrayList<>());
+        }
         this.armeActive = armeActive;
     }
 
@@ -22,6 +26,10 @@ public class Joueur extends Combattant {
         else if (item instanceof Arme) {
             this.inventaire.get(1).add(item);
         }
+    }
+
+    public List<List<Item>> getInventaire() {
+        return this.inventaire;
     }
 
     public void retirerItem(Item item) {
@@ -59,38 +67,25 @@ public class Joueur extends Combattant {
         this.armeActive = (Arme) this.inventaire.get(choix - 1);
     }
 
-    public boolean attaque(Combattant c) {
-        System.out.println("Que voulez vous faire ?");
-        System.out.println("1 - Attaquer");
-        System.out.println("2 - Utiliser un consommable");
-        Scanner scanner = new Scanner(System.in);
-        int choix = scanner.nextInt();
-        if (choix == 1) {
-            System.out.println("Vous pouvez :");
-            System.out.println("1 - Attaquer avec votre arme");
-            System.out.println("2 - Utiliser un sort augmentant votre attque durant 2 tours");
-            int choix2 = scanner.nextInt();
-            if (choix2 == 1) {
-                System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + this.getAttaque() + " points de vie");
-                c.perteVie(this.getAttaque());
-            }
-            else if (choix2 == 2) {
-                System.out.println("Votre attaque est boostée pendant 2 tours");
-                this.setAttaque((int) (this.getAttaque() * 1.5));
-                return true;
-            }
-        }
-        else if (choix == 2) {
-            System.out.println("Que voulez vous utiliser ?");
-            afficherConsommable();
-            int choix2 = scanner.nextInt();
-            utiliserConsommable((Consommable) this.inventaire.get(0).get(choix2 - 1));
-        }
-        return false;
+    public void attaque(Combattant c) {
+        System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + this.getAttaque() + " points de vie");
+        c.perteVie(this.getAttaque());
     }
 
-    public void utiliserConsommable(Consommable consommable) {
-        this.gainVie(consommable.getValeur());
+    public boolean utiliserConsommable(Consommable conso, boolean inFight) {
+        if (conso.getId() == 1) {
+            this.setVie(this.getVie() + conso.getValue());
+            return false;
+        }
+        else if (inFight && conso.getId() == 2) {
+            System.out.println("Vous avez mangé le nachos étrange, sensation étrange, c'est comme si vous pouviez attaquer 2 fois par tour, drôle de sensation");
+            return true;
+        }
+        else if (!inFight && conso.getId() == 2) {
+            System.out.println("Vous ne pouvez pas mangé le nachos étrange ici, gardez le pour un combat ou vous aurez faim");
+            return false;
+        }
+        return false;
     }
 }
 

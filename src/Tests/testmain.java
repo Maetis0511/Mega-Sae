@@ -10,7 +10,15 @@ public class testmain {
         Joueur j1 = new Joueur("Joueur 1", 600, 110);
         Hostile h1 = new Hostile("Hostile 1", 350, 40, 3);
 
-        Combat c1 = new Combat(j1, h1);
-        c1.combat();
+        Consommable c1 = new Consommable("Nachos", 1, "Un nachos miteux", 100);
+        Consommable c2 = new Consommable("Nachos", 1, "Un nachos miteux", 120);
+        Consommable c3 = new Consommable("Nachos étrange", 2, "Un nachos brillant", 2);
+
+        j1.ajouterItem(c1);
+        j1.ajouterItem(c2);
+        j1.ajouterItem(c3);
+
+        Combat combat = new Combat(j1, h1);
+        combat.combat();
     }
 }

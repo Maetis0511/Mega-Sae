@@ -1,17 +1,14 @@
 package Items;
 
 public class Consommable extends Item {
+    private int value;
 
-    private int Valeur;
-
-    Consommable(String nom, int id, int valeur) {
-        super(nom,id);
-        this.Valeur = valeur;
-
+    public Consommable(String nom, int id, String description, int value) {
+        super(nom, id, description);
+        this.value = value;
     }
 
-
-    public int getValeur() {
-        return Valeur;
+    public int getValue() {
+        return value;
     }
 }
