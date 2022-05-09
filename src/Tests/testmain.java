@@ -33,5 +33,6 @@ public class testmain {
         j1.ajouterItem(c3);
 
         Combat combat = new Combat(j1, h1);
+        combat.combat();
     }
 }

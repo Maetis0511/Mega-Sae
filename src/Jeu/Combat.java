@@ -5,6 +5,8 @@ import Personnages.Combattant;
 import Personnages.Hostile;
 import Personnages.Joueur;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Combat {
@@ -12,21 +14,38 @@ public class Combat {
     private Hostile monstre;
     public static boolean boosted;
 
-    /**
-     * Fight constructor
-     * @param joueur the player who is fighting
-     * @param monstre the monster who is fighting
-     */
     public Combat(Joueur joueur, Hostile monstre) {
         this.joueur = joueur;
         this.monstre = monstre;
         this.boosted = false;
     }
 
-    /**
-     * Function to manage the fight
-     */
-    public void combat() {
+    public void cri() {
+        try {
+            File myObj = new File("src/ressources/Wordlist");
+            int i = 0;
+            int random = (int) (Math.random() * 22737);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                if (i == random) {
+
+                    System.out.println(this.monstre.getNom()+" crie : " + data);
+                }
+                i++;
+
+            }
+            myReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+        public void combat() {
+            System.out.println("Vous avez découvert un " + this.monstre.getNom() + " de niveau " + this.monstre.getNiveau() + " !");
+        cri();
         List<Buff> buffs = new ArrayList<>();
         while (joueur.getVie() > 0 && monstre.getVie() > 0) {
 
