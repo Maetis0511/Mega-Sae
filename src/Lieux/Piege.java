@@ -17,7 +17,7 @@ public class Piege {
     }
 
     /**
-     *
+     * Function to activate the trap
      * @param isActive true to activate the trap
      */
     public void setActive(boolean isActive) {
@@ -25,7 +25,7 @@ public class Piege {
     }
 
     /**
-     *
+     * Function to know if the trap is active
      * @return true if the trap is active
      */
     public boolean isActive() {

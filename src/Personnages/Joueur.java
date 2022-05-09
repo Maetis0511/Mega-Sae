@@ -47,8 +47,8 @@ public class Joueur extends Combattant {
     }
 
     /**
-     *
-     * @param item Removes an item from the player's inventory
+     * Function to remove an item from the player's inventory
+     * @param item Item to remove
      */
     public void retirerItem(Item item) {
         this.inventaire.remove(item);
@@ -69,7 +69,6 @@ public class Joueur extends Combattant {
     }
 
     /**
-     *
      * Function to display the player's consumables
      */
     public void afficherConsommable() {
@@ -88,7 +87,7 @@ public class Joueur extends Combattant {
     }
 
     /**
-     * Function to choose an player's weapon
+     * Function to choose a player's weapon
      */
     public void choisirArme() {
         System.out.println("Que voulez vous utiliser ?");
@@ -108,7 +107,7 @@ public class Joueur extends Combattant {
     }
 
     /**
-     *
+     * Function to use a consumable
      * @param conso the consumable to use
      * @param inFight true if the player is in a fight
      * @return true if "nachos étranges" is used

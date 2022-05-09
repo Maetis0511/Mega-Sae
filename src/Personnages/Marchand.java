@@ -16,8 +16,8 @@ public class Marchand extends Personnage {
     }
 
     /**
-     *
-     * @param item Item to add to the inventory
+     * Function to add an item to the trader's inventory
+     * @param item Item to add
      */
     public void ajouterItem(Item item) {
         inventaire.add(item);

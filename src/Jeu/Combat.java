@@ -12,12 +12,20 @@ public class Combat {
     private Hostile monstre;
     public static boolean boosted;
 
+    /**
+     * Fight constructor
+     * @param joueur the player who is fighting
+     * @param monstre the monster who is fighting
+     */
     public Combat(Joueur joueur, Hostile monstre) {
         this.joueur = joueur;
         this.monstre = monstre;
         this.boosted = false;
     }
 
+    /**
+     * Function to manage the fight
+     */
     public void combat() {
         List<Buff> buffs = new ArrayList<>();
         while (joueur.getVie() > 0 && monstre.getVie() > 0) {

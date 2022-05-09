@@ -50,8 +50,8 @@ public abstract class Combattant extends Personnage {
     }
 
     /**
-     *
-     * @param xp the XP to add at the fighter
+     * Function to add XP at the fighter
+     * @param xp the XP to add
      */
     public void ajouterXp(int xp) {
         this.xp += xp;
@@ -74,31 +74,31 @@ public abstract class Combattant extends Personnage {
     }
 
     /**
-     *
-     * @param vie the life to set at the fighter
+     * Function to set the life of the fighter
+     * @param vie the life to set
      */
     public void setVie(int vie){
         this.vie=vie;
     }
 
     /**
-     *
-     * @param attaque the attack to set at the fighter
+     * Function to set the attack of the fighter
+     * @param attaque the attack to set
      */
     public void setAttaque(int attaque){
         this.attaque=attaque;
     }
 
     /**
-     *
-     * @param vie the life to remove at the fighter
+     * Function to remove life from the fighter
+     * @param vie the life to remove
      */
     public void perteVie(int vie){
         this.vie-=vie;
     }
 
     /**
-     *
+     * Function to manage the action of attacking
      * @param c the attack at the fighter
      */
     public abstract void attaque(Combattant c);

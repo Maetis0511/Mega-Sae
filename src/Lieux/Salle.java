@@ -48,7 +48,7 @@ public class Salle {
 
     /**
      * Add a trap to the room
-     * @param p Piege to add
+     * @param p Trap to add
      */
     public void addPiege(Piege p) {
         pieges.add(p);
