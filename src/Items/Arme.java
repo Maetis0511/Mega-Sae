@@ -10,8 +10,8 @@ public class Arme extends Item {
      * @param description Weapon's description
      * @param degats Weapon's damage
      */
-    public Arme(String name,int id, String description, int degats) {
-        super(name, id, description);
+    public Arme(String name,int id, String description, int degats,int prix) {
+        super(name, id, description,prix);
         this.degats = degats;
     }
 

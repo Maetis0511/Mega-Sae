@@ -10,6 +10,10 @@ public class Consommable extends Item {
      * @param description Consumable's description
      * @param value Consumable's value
      */
+    public Consommable(String nom, int id, String description, int value,int prix) {
+        super(nom, id, description,prix);
+        this.value = value;
+    }
     public Consommable(String nom, int id, String description, int value) {
         super(nom, id, description);
         this.value = value;

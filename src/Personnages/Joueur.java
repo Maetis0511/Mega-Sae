@@ -177,8 +177,30 @@ public class Joueur extends Combattant {
         if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
             niveau++;
             attaque = attaque + 20;
+            vie = vie + 20;
         }
     }
+    public void achatMarchand(Marchand m) {
+
+        System.out.println("Que voulez vous acheter ?");
+        for (int i = 0; i < inventaire.size(); i++) {
+            System.out.println(i+1 + "- " + m.inventaire.get(i).getNom());
+        }
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int choix = scanner.nextInt()-1 % m.inventaire.size() + 1;
+            if (m.inventaire.get(choix).getPrix() <= this.or) {
+                this.ajouterItem(m.inventaire.get(choix));
+                m.inventaire.remove(choix);
+                this.retirerOr(m.inventaire.get(choix).getPrix());
+            }
+            } catch(Exception e){
+                System.out.println("Veuillez entrer un nombre");
+            }
+
+
+        }
+
     public boolean estEnVie() {
         if (this.getVie() > 0) {
             return true;

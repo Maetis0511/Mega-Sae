@@ -5,7 +5,7 @@ import Items.Item;
 import java.util.List;
 
 public class Marchand extends Personnage {
-    private List<Item> inventaire;
+    protected List<Item> inventaire;
 
     /**
      * Trader's constructor
