@@ -61,11 +61,11 @@ public class testmain {
         Joueur j1 = new Joueur("Joueur 1", 1000, 110, s1);
         Hostile h1 = new Hostile("Hostile 1", 35000, 40, s3);
 
-        System.out.println(j1.afficherPosition());
+        j1.afficherPosition();
 
         j1.changerSalle(m.getMap(), s3);
 
-        System.out.println(j1.afficherPosition());
+        j1.afficherPosition();
 
         Consommable c1 = new Consommable("Nachos", 1, "Un nachos miteux", 100);
         Consommable c2 = new Consommable("Nachos", 1, "Un nachos miteux", 120);

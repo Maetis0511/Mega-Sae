@@ -145,8 +145,17 @@ public class Joueur extends Combattant {
         return false;
     }
 
-    public String afficherPosition() {
-        return this.pos.getNom();
+    public void afficherPosition() {
+        System.out.println(this.pos.getNom());
+    }
+
+    public void afficherSalles(Graphe<Salle> map) {
+        System.out.println("Salles accessible :");
+        int cpt = 1;
+        for (Salle s : map.getVoisins(this.pos)) {
+            System.out.println(cpt + " - " + s.getNom());
+            cpt++;
+        }
     }
 }
 

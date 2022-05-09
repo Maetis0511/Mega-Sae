@@ -40,29 +40,57 @@ public class Combat {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
-        public void combat() {
-            System.out.println("Vous avez découvert un " + this.monstre.getNom() + " de niveau " + this.monstre.getNiveau() + " !");
-        cri();
-        List<Buff> buffs = new ArrayList<>();
-        while (joueur.getVie() > 0 && monstre.getVie() > 0) {
+    public void combatStep(boolean ex, List<Buff> buffs) {
+        System.out.println("Que voulez vous faire ?");
+        System.out.println("1 - Attaquer");
+        System.out.println("2 - Utiliser un consommable");
+        Scanner scanner = new Scanner(System.in);
+        int choix = 0;
+        while (ex) {
+            try {
+                choix = scanner.nextInt();
+                ex = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                scanner.nextLine();
+            }
+        }
 
-            System.out.println("Il vous reste " + joueur.getVie() + " points de vie");
-            System.out.println("Il reste " + monstre.getVie() + " points de vie à " + monstre.getNom());
-
-            //c1 attaque c2
-
-            System.out.println("Que voulez vous faire ?");
-            System.out.println("1 - Attaquer");
-            System.out.println("2 - Utiliser un consommable");
-            Scanner scanner = new Scanner(System.in);
-            int choix = 0;
-            boolean ex = true;
+        if (choix == 1) {
+            System.out.println("Vous pouvez :");
+            System.out.println("1 - Attaquer avec votre arme");
+            System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
+            int choix2 = 0;
+            ex = true;
             while (ex) {
                 try {
-                    choix = scanner.nextInt();
+                    choix2 = scanner.nextInt();
+                    ex = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                    scanner.nextLine();
+                }
+            }
+            if (choix2 == 1) {
+                joueur.attaque(monstre);
+            }
+            else if (choix2 == 2) {
+                System.out.println("Votre attaque est boostée pendant 2 tours");
+                joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
+                BuffAttaque buff = new BuffAttaque(1.5, 3);
+                buffs.add(buff);
+            }
+        }
+        else if (choix == 2) {
+            System.out.println("Que voulez vous utiliser ?");
+            joueur.afficherConsommable();
+            int choix2 = 0;
+            ex = true;
+            while (ex) {
+                try {
+                    choix2 = scanner.nextInt();
                     ex = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
@@ -70,112 +98,34 @@ public class Combat {
                 }
             }
 
-            if (choix == 1) {
-                System.out.println("Vous pouvez :");
-                System.out.println("1 - Attaquer avec votre arme");
-                System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
-                int choix2 = 0;
-                ex = true;
-                while (ex) {
-                    try {
-                        choix2 = scanner.nextInt();
-                        ex = false;
-                    } catch (InputMismatchException e) {
-                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                        scanner.nextLine();
-                    }
-                }
-                if (choix2 == 1) {
-                    joueur.attaque(monstre);
-                }
-                else if (choix2 == 2) {
-                    System.out.println("Votre attaque est boostée pendant 2 tours");
-                    joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
-                    BuffAttaque buff = new BuffAttaque(1.5, 3);
-                    buffs.add(buff);
-                }
+            this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
+            if (this.boosted) {
+                BuffBoosted buff = new BuffBoosted(2, 2);
+                buffs.add(buff);
             }
-            else if (choix == 2) {
-                System.out.println("Que voulez vous utiliser ?");
-                joueur.afficherConsommable();
-                int choix2 = 0;
-                ex = true;
-                while (ex) {
-                    try {
-                        choix2 = scanner.nextInt();
-                        ex = false;
-                    } catch (InputMismatchException e) {
-                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                        scanner.nextLine();
-                    }
-                }
+        }
+        else if (choix == 3) {
+            combatStep(ex, buffs);
+        }
+    }
 
-                this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
-                if (this.boosted) {
-                    BuffBoosted buff = new BuffBoosted(2, 2);
-                    buffs.add(buff);
-                }
-            }
+    public void combat() {
+        System.out.println("Vous avez découvert un " + this.monstre.getNom() + " de niveau " + this.monstre.getNiveau() + " !");
+        cri();
+        List<Buff> buffs = new ArrayList<>();
+        while (joueur.getVie() > 0 && monstre.getVie() > 0) {
+
+            System.out.println("Il vous reste " + joueur.getVie() + " points de vie");
+            System.out.println("Il reste " + monstre.getVie() + " points de vie à " + monstre.getNom());
+
+            boolean ex = true;
+
+            //c1 attaque c2
+
+            combatStep(ex, buffs);
 
             if (boosted) {
-                System.out.println("Vous pouvez attaquer une deuxième fois grâce au nachos étrange pendant 2 tours");
-                System.out.println("Que voulez vous faire ?");
-                System.out.println("1 - Attaquer");
-                System.out.println("2 - Utiliser un consommable");
-                choix = 0;
-                ex = true;
-                while (ex) {
-                    try {
-                        choix = scanner.nextInt();
-                        ex = false;
-
-                    } catch (InputMismatchException e) {
-                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                        scanner.nextLine();
-                    }
-                }
-
-                if (choix == 1) {
-                    System.out.println("Vous pouvez :");
-                    System.out.println("1 - Attaquer avec votre arme");
-                    System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
-                    int choix2 =0;
-                    ex = true;
-                    while (ex) {
-                        try {
-                            choix2 = scanner.nextInt();
-                            ex = false;
-                        } catch (InputMismatchException e) {
-                            System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                            scanner.nextLine();
-                        }
-                    }
-                    if (choix2 == 1) {
-                        joueur.attaque(monstre);
-                    }
-                    else if (choix2 == 2) {
-                        System.out.println("Votre attaque est boostée pendant 2 tours");
-                        joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
-                        BuffAttaque buff = new BuffAttaque(1.5, 3);
-                        buffs.add(buff);
-                    }
-                }
-                else if (choix == 2) {
-                    System.out.println("Que voulez vous utiliser ?");
-                    joueur.afficherConsommable();
-                    int choix2 = 0;
-                    ex = true;
-                    while (ex) {
-                        try {
-                            choix2 = scanner.nextInt();
-                            ex = false;
-                        } catch (InputMismatchException e) {
-                            System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                            scanner.nextLine();
-                        }
-                    }
-                    joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
-                }
+                combatStep(ex, buffs);
             }
 
             if (monstre.getVie() > 0) {
