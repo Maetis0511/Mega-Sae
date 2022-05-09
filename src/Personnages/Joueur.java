@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class Joueur extends Combattant {
     private List<List<Item>> inventaire;
+    private int or;
     private Arme armeActive;
     private Salle pos;
 
@@ -107,8 +108,14 @@ public class Joueur extends Combattant {
      * @param c the attack at the fighter
      */
     public void attaque(Combattant c) {
-        System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + this.getAttaque() + " points de vie");
-        c.perteVie(this.getAttaque());
+        if (this.armeActive != null) {
+            c.perteVie(this.getAttaque() + this.armeActive.getDegats());
+            System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + this.getAttaque() + this.armeActive.getDegats() + " points de dégats");
+        }
+        else {
+            c.perteVie(this.getAttaque());
+            System.out.println("Vous attaquez " + c.getNom() + " et lui avez infligé " + this.getAttaque() + " points de dégats");
+        }
     }
 
     /**
@@ -156,6 +163,27 @@ public class Joueur extends Combattant {
             System.out.println(cpt + " - " + s.getNom());
             cpt++;
         }
+    }
+    public int getOr() {
+        return this.or;
+    }
+    public void ajouterOr(int or) {
+        this.or = this.or+or;
+    }
+    public void retirerOr(int or) {
+        this.or = this.or-or;
+    }
+    public void passageNiveau() {
+        if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
+            niveau++;
+            attaque = attaque + 20;
+        }
+    }
+    public boolean estEnVie() {
+        if (this.getVie() > 0) {
+            return true;
+        }
+        return false;
     }
 }
 

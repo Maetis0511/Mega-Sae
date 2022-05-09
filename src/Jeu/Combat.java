@@ -146,6 +146,8 @@ public class Combat {
         }
         if (joueur.getVie() > 0) {
             System.out.println("Vous remportez le combat !");
+            joueur.ajouterXp(100*monstre.getNiveau());
+
         }
         if (monstre.getVie() > 0) {
             System.out.println("Vous avez été tué par " + monstre.getNom());
