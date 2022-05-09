@@ -59,11 +59,11 @@ public class Combat {
             System.out.println("2 - Utiliser un consommable");
             Scanner scanner = new Scanner(System.in);
             int choix = 0;
-            boolean exception = true;
-            while (exception) {
+            boolean ex = true;
+            while (ex) {
                 try {
                     choix = scanner.nextInt();
-                    exception = false;
+                    ex = false;
                 } catch (InputMismatchException e) {
                     System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
                     scanner.nextLine();
@@ -75,11 +75,11 @@ public class Combat {
                 System.out.println("1 - Attaquer avec votre arme");
                 System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
                 int choix2 = 0;
-                boolean exception2 = true;
-                while (exception2) {
+                ex = true;
+                while (ex) {
                     try {
                         choix2 = scanner.nextInt();
-                        exception2 = false;
+                        ex = false;
                     } catch (InputMismatchException e) {
                         System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
                         scanner.nextLine();
@@ -99,11 +99,15 @@ public class Combat {
                 System.out.println("Que voulez vous utiliser ?");
                 joueur.afficherConsommable();
                 int choix2 = 0;
-                try {
-                    choix2 = scanner.nextInt();
-                }catch (InputMismatchException e) {
-                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                    scanner.nextLine();
+                ex = true;
+                while (ex) {
+                    try {
+                        choix2 = scanner.nextInt();
+                        ex = false;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                        scanner.nextLine();
+                    }
                 }
 
                 this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
@@ -118,12 +122,34 @@ public class Combat {
                 System.out.println("Que voulez vous faire ?");
                 System.out.println("1 - Attaquer");
                 System.out.println("2 - Utiliser un consommable");
-                choix = scanner.nextInt();
+                choix = 0;
+                ex = true;
+                while (ex) {
+                    try {
+                        choix = scanner.nextInt();
+                        ex = false;
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                        scanner.nextLine();
+                    }
+                }
+
                 if (choix == 1) {
                     System.out.println("Vous pouvez :");
                     System.out.println("1 - Attaquer avec votre arme");
                     System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
-                    int choix2 = scanner.nextInt();
+                    int choix2 =0;
+                    ex = true;
+                    while (ex) {
+                        try {
+                            choix2 = scanner.nextInt();
+                            ex = false;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                            scanner.nextLine();
+                        }
+                    }
                     if (choix2 == 1) {
                         joueur.attaque(monstre);
                     }
@@ -137,7 +163,17 @@ public class Combat {
                 else if (choix == 2) {
                     System.out.println("Que voulez vous utiliser ?");
                     joueur.afficherConsommable();
-                    int choix2 = scanner.nextInt();
+                    int choix2 = 0;
+                    ex = true;
+                    while (ex) {
+                        try {
+                            choix2 = scanner.nextInt();
+                            ex = false;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                            scanner.nextLine();
+                        }
+                    }
                     joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
                 }
             }
