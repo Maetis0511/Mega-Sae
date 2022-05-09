@@ -9,16 +9,35 @@ public class Hostile extends Combattant {
     private Item loot;
     private int nbLoot;
 
+    /**
+     * Mob constructor with loot
+     * @param nom Mob's name
+     * @param vie Mob's life
+     * @param attaque Mob's attack
+     * @param loot Mob's loot when killed
+     * @param niveau Mob's level
+     */
     public Hostile(String nom, int vie, int attaque, Item loot, int niveau) {
         super(nom, vie, attaque * (niveau / 15), niveau, 0);
         this.loot = loot;
     }
 
+    /**
+     * Mob constructor without loot
+     * @param nom Mob's name
+     * @param vie Mob's life
+     * @param attaque Mob's attack
+     * @param niveau Mob's level
+     */
     public Hostile(String nom, int vie, int attaque, int niveau) {
         super(nom, vie, attaque, niveau, 0);
         this.loot = null;
     }
 
+    /**
+     * Set mob's attack
+     * @param c the attack of the mob
+     */
     public void attaque(Combattant c){
         Random r = new Random();
         int nb = r.nextInt(1000);

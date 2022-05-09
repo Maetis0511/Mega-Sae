@@ -23,7 +23,7 @@ public class Combat {
         while (joueur.getVie() > 0 && monstre.getVie() > 0) {
 
             System.out.println("Il vous reste " + joueur.getVie() + " points de vie");
-            System.out.println("Il reste " + monstre.getVie() + " points de vie");
+            System.out.println("Il reste " + monstre.getVie() + " points de vie à " + monstre.getNom());
 
             //c1 attaque c2
 
@@ -35,7 +35,7 @@ public class Combat {
             if (choix == 1) {
                 System.out.println("Vous pouvez :");
                 System.out.println("1 - Attaquer avec votre arme");
-                System.out.println("2 - Utiliser un sort augmentant votre attque durant 2 tours");
+                System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
                 int choix2 = scanner.nextInt();
                 if (choix2 == 1) {
                     joueur.attaque(monstre);
@@ -67,7 +67,7 @@ public class Combat {
                 if (choix == 1) {
                     System.out.println("Vous pouvez :");
                     System.out.println("1 - Attaquer avec votre arme");
-                    System.out.println("2 - Utiliser un sort augmentant votre attque durant 2 tours");
+                    System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
                     int choix2 = scanner.nextInt();
                     if (choix2 == 1) {
                         joueur.attaque(monstre);

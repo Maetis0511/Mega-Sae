@@ -7,8 +7,9 @@ import Items.*;
 
 public class testmain {
     public static void main(String[] args) {
-        Joueur j1 = new Joueur("Joueur 1", 600, 110);
-        Hostile h1 = new Hostile("Hostile 1", 350, 40, 3);
+        Joueur j1 = new Joueur("Joueur 1", 1000, 110);
+        Hostile h1 = new Hostile("Hostile 1", 35000, 40, 3);
+
 
         Consommable c1 = new Consommable("Nachos", 1, "Un nachos miteux", 100);
         Consommable c2 = new Consommable("Nachos", 1, "Un nachos miteux", 120);

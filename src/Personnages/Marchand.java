@@ -7,14 +7,25 @@ import java.util.List;
 public class Marchand extends Personnage {
     private List<Item> inventaire;
 
+    /**
+     * Trader's constructor
+     * @param nom Item's name
+     */
     public Marchand(String nom) {
         super(nom);
     }
 
+    /**
+     *
+     * @param item Item to add to the inventory
+     */
     public void ajouterItem(Item item) {
         inventaire.add(item);
     }
 
+    /**
+     * Function to display the trader's inventory
+     */
     public void afficherInventaire() {
         for (Item item : inventaire) {
             System.out.println(item.getNom());

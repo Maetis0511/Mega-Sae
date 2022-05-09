@@ -2,6 +2,7 @@ package Personnages;
 
 public abstract class Personnage {
     private String nom;
+    private String salle;
 
     public Personnage(String nom) {
         this.nom = nom;
@@ -13,6 +14,10 @@ public abstract class Personnage {
 
     public String getNom(){
         return this.nom;
+    }
+
+    public String getSalle() {
+        return salle;
     }
 }
 
