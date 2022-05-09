@@ -58,12 +58,33 @@ public class Combat {
             System.out.println("1 - Attaquer");
             System.out.println("2 - Utiliser un consommable");
             Scanner scanner = new Scanner(System.in);
-            int choix = scanner.nextInt();
+            int choix = 0;
+            boolean exception = true;
+            while (exception) {
+                try {
+                    choix = scanner.nextInt();
+                    exception = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                    scanner.nextLine();
+                }
+            }
+
             if (choix == 1) {
                 System.out.println("Vous pouvez :");
                 System.out.println("1 - Attaquer avec votre arme");
                 System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
-                int choix2 = scanner.nextInt();
+                int choix2 = 0;
+                boolean exception2 = true;
+                while (exception2) {
+                    try {
+                        choix2 = scanner.nextInt();
+                        exception2 = false;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                        scanner.nextLine();
+                    }
+                }
                 if (choix2 == 1) {
                     joueur.attaque(monstre);
                 }
@@ -77,7 +98,14 @@ public class Combat {
             else if (choix == 2) {
                 System.out.println("Que voulez vous utiliser ?");
                 joueur.afficherConsommable();
-                int choix2 = scanner.nextInt();
+                int choix2 = 0;
+                try {
+                    choix2 = scanner.nextInt();
+                }catch (InputMismatchException e) {
+                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
+                    scanner.nextLine();
+                }
+
                 this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
                 if (this.boosted) {
                     BuffBoosted buff = new BuffBoosted(2, 2);
