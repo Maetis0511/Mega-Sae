@@ -1,6 +1,8 @@
 package Personnages;
 
 import Items.*;
+import Lieux.Graphe;
+import Lieux.Salle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +11,23 @@ import java.util.Scanner;
 public class Joueur extends Combattant {
     private List<List<Item>> inventaire;
     private Arme armeActive;
+    private Salle pos;
 
     /**
      * Player constructor
      * @param nom Player's name
      * @param vie Player's life
-     * @param attaque Player's attack
+     * @param s Player's room
      */
-    public Joueur(String nom, int vie, int attaque) {
+    public Joueur(String nom, int vie, int attaque, Salle s) {
         super(nom,vie,attaque,1,0);
         this.inventaire = new ArrayList<>(2);
         for (int i = 0; i < 2; i++) {
             this.inventaire.add(new ArrayList<>());
         }
         this.armeActive = armeActive;
+
+        this.pos = s;
     }
 
     /**
@@ -126,6 +131,22 @@ public class Joueur extends Combattant {
             return false;
         }
         return false;
+    }
+
+
+    public boolean changerSalle(Graphe<Salle> map, Salle s) {
+        for (Salle salle : map.getVoisins(s)) {
+            if (salle.getNom().equals(s.getNom())) {
+                this.pos = salle;
+                return true;
+            }
+        }
+        System.out.println("Cette salle n'est pas accessible");
+        return false;
+    }
+
+    public String afficherPosition() {
+        return this.pos.getNom();
     }
 }
 

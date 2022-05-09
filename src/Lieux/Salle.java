@@ -61,4 +61,12 @@ public class Salle {
     public int getNiveauSalle() {
         return niveauSalle;
     }
+
+    /**
+     *
+     * @return Room's name and description
+     */
+    public String toString() {
+        return nom;
+    }
 }

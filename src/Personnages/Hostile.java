@@ -2,12 +2,14 @@ package Personnages;
 
 
 import Items.*;
+import Lieux.Salle;
 
 import java.util.Random;
 
 public class Hostile extends Combattant {
     private Item loot;
     private int nbLoot;
+    private Salle pos;
 
     /**
      * Mob constructor with loot
@@ -15,11 +17,12 @@ public class Hostile extends Combattant {
      * @param vie Mob's life
      * @param attaque Mob's attack
      * @param loot Mob's loot when killed
-     * @param niveau Mob's level
+     * @param s Mob's room
      */
-    public Hostile(String nom, int vie, int attaque, Item loot, int niveau) {
-        super(nom, vie, attaque * (niveau / 15), niveau, 0);
+    public Hostile(String nom, int vie, int attaque, Item loot, Salle s) {
+        super(nom, vie, attaque * (s.getNiveauSalle() / 15), s.getNiveauSalle(), 0);
         this.loot = loot;
+        this.pos = s;
     }
 
     /**
@@ -27,11 +30,12 @@ public class Hostile extends Combattant {
      * @param nom Mob's name
      * @param vie Mob's life
      * @param attaque Mob's attack
-     * @param niveau Mob's level
+     * @param s Mob's room
      */
-    public Hostile(String nom, int vie, int attaque, int niveau) {
-        super(nom, vie, attaque, niveau, 0);
+    public Hostile(String nom, int vie, int attaque, Salle s) {
+        super(nom, vie, attaque, s.getNiveauSalle(), 0);
         this.loot = null;
+        this.pos = s;
     }
 
     /**

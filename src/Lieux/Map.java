@@ -37,4 +37,8 @@ public class Map {
     public Set<Salle> sallesAdjacentes(Salle s) {
         return this.map.getVoisins(s);
     }
+
+    public Graphe<Salle> getMap() {
+        return this.map;
+    }
 }
