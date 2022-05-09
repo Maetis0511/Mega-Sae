@@ -8,26 +8,26 @@ import Items.*;
 public class testmain {
     public static void main(String[] args) {
         Map m = new Map();
-        Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1);
-        Salle s2 = new Salle("Salle 2", "Salle normal", 2);
-        Salle s3 = new Salle("Salle 3", "Salle piègé", 2);
-        Salle s4 = new Salle("Salle 4", "Salle de Boss", 3);
-        Salle s5 = new Salle("Salle 5", "Salle normal", 3);
-        Salle s6 = new Salle("Salle 6", "Salle avec marchand", 3);
-        Salle s7 = new Salle("Salle 7", "Salle piègé", 4);
-        Salle s8 = new Salle("Salle 8", "Salle clé", 4);
-        Salle s9 = new Salle("Salle 9", "Salle normal", 5);
-        Salle s10 = new Salle("Salle 10", "Salle normal ", 6);
-        Salle s11 = new Salle("Salle 11", "Salle normal ", 5);
-        Salle s12 = new Salle("Salle 12", "Salle normal ", 5);
-        Salle s13 = new Salle("Salle 13", "Salle piègé", 5);
-        Salle s14 = new Salle("Salle 14", "Salle normal", 6);
-        Salle s15 = new Salle("Salle 15", "Salle piègé", 6);
-        Salle s16 = new Salle("Salle 16", "Salle piègé", 7);
-        Salle s17 = new Salle("Salle 17", "Salle normal", 7);
-        Salle s18 = new Salle("Salle 18", "Salle normal", 7);
-        Salle s19 = new Salle("Salle 19", "Salle avec marchand", 8);
-        Salle s20 = new Salle("Salle 20", "Salle Boss", 9);
+        Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
+        Salle s2 = new Salle("Salle 2", "Salle normal", 2, 1);
+        Salle s3 = new Salle("Salle 3", "Salle piègé", 2, 1);
+        Salle s4 = new Salle("Salle 4", "Salle de Boss", 3, 2);
+        Salle s5 = new Salle("Salle 5", "Salle normal", 3, 1);
+        Salle s6 = new Salle("Salle 6", "Salle avec marchand", 3, 3);
+        Salle s7 = new Salle("Salle 7", "Salle piègé", 4, 1);
+        Salle s8 = new Salle("Salle 8", "Salle clé", 4, 4);
+        Salle s9 = new Salle("Salle 9", "Salle normal", 5, 1);
+        Salle s10 = new Salle("Salle 10", "Salle normal ", 6, 1);
+        Salle s11 = new Salle("Salle 11", "Salle normal ", 5, 1);
+        Salle s12 = new Salle("Salle 12", "Salle normal ", 5, 1);
+        Salle s13 = new Salle("Salle 13", "Salle piègé", 5, 1);
+        Salle s14 = new Salle("Salle 14", "Salle normal", 6, 1);
+        Salle s15 = new Salle("Salle 15", "Salle piègé", 6, 1);
+        Salle s16 = new Salle("Salle 16", "Salle piègé", 7, 1);
+        Salle s17 = new Salle("Salle 17", "Salle normal", 7, 1);
+        Salle s18 = new Salle("Salle 18", "Salle normal", 7, 1);
+        Salle s19 = new Salle("Salle 19", "Salle avec marchand", 8, 3);
+        Salle s20 = new Salle("Salle 20", "Salle Boss", 9, 2);
 
 
 
