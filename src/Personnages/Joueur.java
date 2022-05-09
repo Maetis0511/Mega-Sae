@@ -1,11 +1,13 @@
 package Personnages;
 
 import Items.*;
+import Jeu.Combat;
 import Lieux.Graphe;
 import Lieux.Salle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Joueur extends Combattant {
@@ -142,9 +144,18 @@ public class Joueur extends Combattant {
 
 
     public boolean changerSalle(Graphe<Salle> map, Salle s) {
-        for (Salle salle : map.getVoisins(s)) {
-            if (salle.getNom().equals(s.getNom())) {
+        for (Salle salle : map.getVoisins(this.pos)) {
+            if (salle.getId() == s.getId()) {
                 this.pos = salle;
+                if (salle.getId() == 1) {
+                    Random rd = new Random();
+                    int nb = rd.nextInt(100);
+                    if (nb < 83) {
+                        Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                        Combat c = new Combat(this, mob);
+                        c.combat();
+                    }
+                }
                 return true;
             }
         }

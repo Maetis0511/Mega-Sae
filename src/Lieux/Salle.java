@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Salle {
     private String nom;
+    private int id;
     private String description;
     private List<Piege> pieges;
     private int niveauSalle;
@@ -15,11 +16,12 @@ public class Salle {
      * @param description Room's description
      * @param niveauSalle Room's level
      */
-    public Salle(String nom, String description, int niveauSalle) {
+    public Salle(String nom, String description, int niveauSalle, int id) {
         this.nom = nom;
         this.description = description;
         this.pieges = new ArrayList<>();
         this.niveauSalle = niveauSalle;
+        this.id = id;
     }
 
     /**
@@ -60,6 +62,14 @@ public class Salle {
      */
     public int getNiveauSalle() {
         return niveauSalle;
+    }
+
+    /**
+     *
+     * @return Room's id
+     */
+    public int getId() {
+        return id;
     }
 
     /**
