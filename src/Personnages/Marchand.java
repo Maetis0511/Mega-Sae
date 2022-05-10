@@ -31,4 +31,8 @@ public class Marchand extends Personnage {
             System.out.println(item.getNom());
         }
     }
+
+    public List<Item> getInventaire() {
+        return inventaire;
+    }
 }
