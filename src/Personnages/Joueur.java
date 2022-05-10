@@ -197,17 +197,22 @@ public class Joueur extends Combattant {
         for (int i = 0; i < m.getInventaire().size(); i++) {
             System.out.println(i+1 + "- " + m.getInventaire().get(i).getNom());
         }
-        try {
-            Scanner scanner = new Scanner(System.in);
-            int choix = scanner.nextInt()-1 % m.getInventaire().size() + 1;
-            if (m.getInventaire().get(choix).getPrix() <= this.or) {
-                this.ajouterItem(m.getInventaire().get(choix));
-                m.getInventaire().remove(choix);
-                this.retirerOr(m.getInventaire().get(choix).getPrix());
-            }
-            } catch(Exception e){
+        boolean fini = true;
+        Scanner scanner = new Scanner(System.in);
+        while (fini) {
+            try {
+                int choix = scanner.nextInt() - 1 % m.getInventaire().size() + 1;
+                if (m.getInventaire().get(choix).getPrix() <= this.or) {
+                    this.ajouterItem(m.getInventaire().get(choix));
+                    m.getInventaire().remove(choix);
+                    this.retirerOr(m.getInventaire().get(choix).getPrix());
+                    fini = false;
+                }
+            } catch (Exception e) {
                 System.out.println("Veuillez entrer un nombre");
+                scanner.nextLine();
             }
+        }
 
 
         }
