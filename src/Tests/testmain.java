@@ -29,6 +29,27 @@ public class testmain {
         Salle s19 = new Salle("Salle 19", "Salle avec marchand", 8, 3);
         Salle s20 = new Salle("Salle 20", "Salle Boss", 9, 2);
 
+        Arme a1 = new Arme("Épée",3,"Épée rouillé", 150);
+        Arme a2 = new Arme("Arbalette",3,"", 200);
+        Arme a3 = new Arme("Lame de Doran",3,"Un bon item à 450", 250, 180);
+        Arme a4 = new Arme("Babouche de la grand-mère",3,"", 300,);
+        Arme a5 = new Arme("Pistolet accrobatique",3,"Relique du temple Miteux", 450);
+        Arme a6 = new Arme("",3,"", 150);
+        Arme a7 = new Arme("",3,"", 200);
+        Arme a8 = new Arme("",3,"", 250, 180);
+        Arme a9 = new Arme("",3,"", 300,);
+        Arme a10 = new Arme("",3,"", 450);
+        Arme a11 = new Arme("",3,"", 150);
+        Arme a12 = new Arme("",3,"", 200);
+        Arme a13 = new Arme("",3,"", 250, 180);
+        Arme a14 = new Arme("",3,"", 300,);
+        Arme a15 = new Arme("",3,"", 450);
+        Arme a16 = new Arme("",3,"", 150);
+        Arme a17 = new Arme("",3,"", 200);
+        Arme a18 = new Arme("",3,"", 250, 180);
+        Arme a19 = new Arme("",3,"", 300,);
+        Arme a20 = new Arme("",3,"", 450);
+
 
 
         m.addLien(s1, s2);
