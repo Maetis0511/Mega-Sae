@@ -20,6 +20,7 @@ public class Joueur extends Combattant {
      * Player constructor
      * @param nom Player's name
      * @param vie Player's life
+     * @param attaque Player's attack
      * @param s Player's room
      */
     public Joueur(String nom, int vie, int attaque, Salle s) {
@@ -156,9 +157,73 @@ public class Joueur extends Combattant {
                     Random rd = new Random();
                     int nb = rd.nextInt(100);
                     if (nb < 83) {
-                        Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
-                        Combat c = new Combat(this, mob);
-                        c.combat();
+                        int nb2 = rd.nextInt(100);
+                        int nb3 = rd.nextInt(100);
+                        if (nb2 <= 19) {
+                            if (nb3 < 81) {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                                //ajouter items
+                            }
+                            else {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                            }
+                        }
+                        if (nb2 > 19 && nb2 <= 39) {
+                            if (nb3 < 81) {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                                //ajouter items
+                            }
+                            else {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                            }
+                        }
+                        if (nb2 > 39 && nb2 <= 59) {
+                            if (nb3 < 81) {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                                //ajouter items
+                            }
+                            else {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                            }
+                        }
+                        if (nb2 > 59 && nb2 <= 79) {
+                            if (nb3 < 81) {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                                //ajouter items
+                            }
+                            else {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                            }
+                        }
+                        if (nb2 > 79) {
+                            if (nb3 < 81) {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                                //ajouter items
+                            }
+                            else {
+                                Hostile mob = new Hostile("Jeune nachos miteux", s.getNiveauSalle() * 170, s.getNiveauSalle() * 32, s);
+                                Combat c = new Combat(this, mob);
+                                c.combat();
+                            }
+                        }
                     }
                 }
                 return true;

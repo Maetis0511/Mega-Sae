@@ -1,13 +1,64 @@
-package Tests;
+package Jeu;
 
-import Personnages.*;
-import Lieux.*;
-import Jeu.*;
-import Items.*;
+import Items.Arme;
+import Items.Consommable;
+import Lieux.Map;
+import Lieux.Salle;
+import Personnages.Hostile;
+import Personnages.Joueur;
 
-public class testmain {
-    public static void main(String[] args) {
-        Map m = new Map();
+import java.util.ArrayList;
+import java.util.List;
+
+public class Instance {
+    public static List<Arme> listeArmes;
+    public static List<Consommable> listeConsommables;
+    public static Map m;
+
+    public Instance() {
+        listeArmes = new ArrayList<>();
+        Arme a1 = new Arme("Épée", 3, "Épée rouillé", 150);
+        Arme a2 = new Arme("Arbalette", 3, "", 200);
+        Arme a3 = new Arme("Lame de Doran", 3, "Un bon item à 450", 250, 180);
+        Arme a4 = new Arme("Babouche de la grand-mère", 3, "", 300);
+        Arme a5 = new Arme("Pistolet accrobatique", 3, "Relique du temple Miteux", 450);
+        Arme a6 = new Arme("Hache du berserk", 3, "", 150);
+        Arme a7 = new Arme("Kunaî", 3, "", 200);
+        Arme a8 = new Arme("Katana", 3, "", 250, 180);
+        Arme a9 = new Arme("Arc", 3, "", 300);
+        Arme a10 = new Arme("Torche", 3, "", 450);
+        Arme a11 = new Arme("Couperet noir", 3, "", 150);
+        Arme a12 = new Arme("Canif", 3, "", 200);
+        Arme a13 = new Arme("Pied de biche", 3, "", 250, 180);
+        Arme a14 = new Arme("Lance pierre", 3, "", 300);
+        Arme a15 = new Arme("", 3, "", 450);
+        Arme a16 = new Arme("", 3, "", 150);
+        Arme a17 = new Arme("", 3, "", 200);
+        Arme a18 = new Arme("", 3, "", 250, 180);
+        Arme a19 = new Arme("", 3, "", 300);
+        Arme a20 = new Arme("", 3, "", 450);
+
+        listeArmes.add(a1);
+        listeArmes.add(a2);
+        listeArmes.add(a3);
+        listeArmes.add(a4);
+        listeArmes.add(a5);
+        listeArmes.add(a6);
+        listeArmes.add(a7);
+        listeArmes.add(a8);
+        listeArmes.add(a9);
+        listeArmes.add(a10);
+        listeArmes.add(a11);
+        listeArmes.add(a12);
+        listeArmes.add(a13);
+        listeArmes.add(a14);
+        listeArmes.add(a15);
+        listeArmes.add(a16);
+        listeArmes.add(a17);
+        listeArmes.add(a18);
+        listeArmes.add(a19);
+        listeArmes.add(a20);
+
         Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
         Salle s2 = new Salle("Salle 2", "Salle normal", 2, 1);
         Salle s3 = new Salle("Salle 3", "Salle piègé", 2, 1);
@@ -29,28 +80,7 @@ public class testmain {
         Salle s19 = new Salle("Salle 19", "Salle avec marchand", 8, 3);
         Salle s20 = new Salle("Salle 20", "Salle Boss", 9, 2);
 
-        Arme a1 = new Arme("Épée",3,"Épée rouillé", 150);
-        Arme a2 = new Arme("Arbalette",3,"", 200);
-        Arme a3 = new Arme("Lame de Doran",3,"Un bon item à 450", 250, 180);
-        Arme a4 = new Arme("Babouche de la grand-mère",3,"", 300);
-        Arme a5 = new Arme("Pistolet accrobatique",3,"Relique du temple Miteux", 450);
-        Arme a6 = new Arme("Hache du berserk",3,"", 150);
-        Arme a7 = new Arme("Kunaî",3,"", 200);
-        Arme a8 = new Arme("Katana",3,"", 250, 180);
-        Arme a9 = new Arme("Arc",3,"", 300);
-        Arme a10 = new Arme("Torche",3,"", 450);
-        Arme a11 = new Arme("Couperet noir",3,"", 150);
-        Arme a12 = new Arme("Canif",3,"", 200);
-        Arme a13 = new Arme("Pied de biche",3,"", 250, 180);
-        Arme a14 = new Arme("Lance pierre",3,"", 300);
-        Arme a15 = new Arme("",3,"", 450);
-        Arme a16 = new Arme("",3,"", 150);
-        Arme a17 = new Arme("",3,"", 200);
-        Arme a18 = new Arme("",3,"", 250, 180);
-        Arme a19 = new Arme("",3,"", 300);
-        Arme a20 = new Arme("",3,"", 450);
-
-
+        m = new Map();
 
         m.addLien(s1, s2);
         m.addLien(s1, s3);
@@ -79,24 +109,14 @@ public class testmain {
         m.addLien(s18, s19);
         m.addLien(s19, s20);
 
-        Joueur j1 = new Joueur("Joueur 1", 1000, 110, s1);
-        Hostile h1 = new Hostile("Hostile 1", 35000, 40, s3);
-
-        j1.afficherPosition();
-
-        j1.changerSalle(m.getMap(), s3);
-
-        j1.afficherPosition();
+        listeConsommables = new ArrayList<>();
 
         Consommable c1 = new Consommable("Nachos", 1, "Un nachos miteux", 100);
         Consommable c2 = new Consommable("Nachos", 1, "Un nachos miteux", 120);
         Consommable c3 = new Consommable("Nachos étrange", 2, "Un nachos brillant", 2);
 
-        j1.ajouterItem(c1);
-        j1.ajouterItem(c2);
-        j1.ajouterItem(c3);
-
-        Combat combat = new Combat(j1, h1);
-        combat.combat();
+        listeConsommables.add(c1);
+        listeConsommables.add(c2);
+        listeConsommables.add(c3);
     }
 }
