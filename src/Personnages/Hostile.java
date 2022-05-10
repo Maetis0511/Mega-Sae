@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class Hostile extends Combattant {
     private Item loot;
-    private int nbLoot;
     private Salle pos;
 
     /**
