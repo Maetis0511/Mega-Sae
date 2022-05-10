@@ -112,11 +112,9 @@ public class Instance {
         listeConsommables = new ArrayList<>();
 
         Consommable c1 = new Consommable("Nachos", 1, "Un nachos miteux", 100);
-        Consommable c2 = new Consommable("Nachos", 1, "Un nachos miteux", 120);
-        Consommable c3 = new Consommable("Nachos étrange", 2, "Un nachos brillant", 2);
+        Consommable c2 = new Consommable("Nachos étrange", 2, "Un nachos brillant", 2);
 
         listeConsommables.add(c1);
         listeConsommables.add(c2);
-        listeConsommables.add(c3);
     }
 }
