@@ -142,7 +142,12 @@ public class Joueur extends Combattant {
         return false;
     }
 
-
+    /**
+     * Function to change room
+     * @param map the map
+     * @param s Position where the player goes
+     * @return true if the room is accessible
+     */
     public boolean changerSalle(Graphe<Salle> map, Salle s) {
         for (Salle salle : map.getVoisins(this.pos)) {
             if (salle.getId() == s.getId()) {
@@ -163,10 +168,17 @@ public class Joueur extends Combattant {
         return false;
     }
 
+    /**
+     * Function to display the room where the player is
+     */
     public void afficherPosition() {
         System.out.println(this.pos.getNom());
     }
 
+    /**
+     * Function to display accessible rooms
+     * @param map the map
+     */
     public void afficherSalles(Graphe<Salle> map) {
         System.out.println("Salles accessible :");
         int cpt = 1;
@@ -175,15 +187,34 @@ public class Joueur extends Combattant {
             cpt++;
         }
     }
+
+    /**
+     *
+     * @return the player's money
+     */
     public int getOr() {
         return this.or;
     }
+
+    /**
+     * Function to add money
+     * @param or the money to add
+     */
     public void ajouterOr(int or) {
         this.or = this.or+or;
     }
+
+    /**
+     * Function to remove money
+     * @param or the money to remove
+     */
     public void retirerOr(int or) {
         this.or = this.or-or;
     }
+
+    /**
+     * Function to increase the player's statistics when he gets a new level
+     */
     public void passageNiveau() {
         if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
             niveau++;
@@ -191,6 +222,11 @@ public class Joueur extends Combattant {
             vie = vie + 20;
         }
     }
+
+    /**
+     * Function to buy from a trader
+     * @param m the trader
+     */
     public void achatMarchand(Marchand m) {
 
         System.out.println("Que voulez vous acheter ?");
@@ -217,6 +253,9 @@ public class Joueur extends Combattant {
 
         }
 
+    /**
+     * @return true if the player is alive
+     */
     public boolean estEnVie() {
         if (this.getVie() > 0) {
             return true;
