@@ -137,6 +137,9 @@ public class Joueur extends Combattant {
     public boolean utiliserConsommable(Consommable conso, boolean inFight) {
         if (conso.getId() == 1) {
             this.setVie(this.getVie() + conso.getValue());
+            if(vie>viemax) {
+                this.setVie(viemax);
+            }
             return false;
         }
         else if (inFight && conso.getId() == 2) {
@@ -318,8 +321,12 @@ public class Joueur extends Combattant {
     public void passageNiveau() {
         if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
             niveau++;
+            viemax = viemax + 20;
             attaque = attaque + 20;
             vie = vie + 20;
+            if(vie>viemax) {
+                vie = viemax;
+            }
         }
     }
 

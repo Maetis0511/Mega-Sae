@@ -1,6 +1,7 @@
 package Personnages;
 
 public abstract class Combattant extends Personnage {
+    protected int viemax;
     protected int vie;
     protected int attaque;
     protected int niveau;
@@ -16,11 +17,9 @@ public abstract class Combattant extends Personnage {
      */
     public Combattant(String nom, int vie, int attaque, int niveau, int xp){
         super(nom);
-        if (vie > 0) {
-            this.vie = vie;
-        } else {
-            System.out.println("Votre vie doit être supérieure à 0");
-        }
+
+        this.vie = vie;
+        this.viemax = vie;
         this.attaque=attaque;
         this.niveau=niveau;
         this.xp=xp;
