@@ -42,18 +42,22 @@ public abstract class Combattant extends Personnage {
     }
 
     /**
-     * Function to pass a level to the fighter
-     */
-    public void passageNiveau() {
-        this.niveau++;
-    }
-
-    /**
      * Function to add XP at the fighter
      * @param xp the XP to add
      */
     public void ajouterXp(int xp) {
+        System.out.println("Vous avez gagnes " + xp + " points d'XP");
         this.xp += xp;
+        if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
+            System.out.println("Vous avez atteint le niveau " + (this.getNiveau()+1));
+            niveau++;
+            viemax = viemax + 20;
+            attaque = attaque + 20;
+            vie = vie + 20;
+            if(vie>viemax) {
+                vie = viemax;
+            }
+        }
     }
 
     /**

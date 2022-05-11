@@ -11,6 +11,7 @@ public class Marchand extends Personnage {
      * Trader's constructor
      * @param nom Item's name
      */
+
     public Marchand(String nom) {
         super(nom);
     }

@@ -53,4 +53,8 @@ public class Hostile extends Combattant {
             System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
         }
     }
+
+    public Item getLoot() {
+        return loot;
+    }
 }

@@ -87,30 +87,36 @@ public class Joueur extends Combattant {
     /**
      * Function to display the player's consumables
      */
-    public void afficherConsommable() {
-        for (int i = 0; i < inventaire.get(0).size(); i++) {
-            System.out.println((i + 1) + " - " + inventaire.get(0).get(i).getNom());
+    public java.util.Map<Integer, Consommable> afficherConsommable() {
+        java.util.Map<Integer, Consommable> listeConsommable = new HashMap<>();
+        int cpt = 1;
+        for (Item i : inventaire.get(0)) {
+            if (i instanceof Consommable) {
+                listeConsommable.put(cpt, (Consommable) i);
+            }
         }
+        return listeConsommable;
     }
 
     /**
      * Function to display the player's weapons
      */
-    public void afficherArme() {
-        for (int i = 0; i < inventaire.get(1).size(); i++) {
-            System.out.println((i + 1) + " - " + inventaire.get(1).get(i).getNom());
+    public java.util.Map<Integer, Arme> afficherArme() {
+        java.util.Map<Integer, Arme> listeConsommable = new HashMap<>();
+        int cpt = 1;
+        for (Item i : inventaire.get(1)) {
+            if (i instanceof Arme) {
+                listeConsommable.put(cpt, (Arme) i);
+            }
         }
+        return listeConsommable;
     }
 
     /**
      * Function to choose a player's weapon
      */
-    public void choisirArme() {
-        System.out.println("Que voulez vous utiliser ?");
-        afficherArme();
-        Scanner scanner = new Scanner(System.in);
-        int choix = scanner.nextInt();
-        this.armeActive = (Arme) this.inventaire.get(choix - 1);
+    public void choisirArme(Arme a) {
+        this.armeActive = a;
     }
 
     /**
@@ -304,6 +310,7 @@ public class Joueur extends Combattant {
      * @param or the money to add
      */
     public void ajouterOr(int or) {
+        System.out.println("Vous avez gagnez " + or + " pièces d'or");
         this.or = this.or+or;
     }
 
@@ -313,21 +320,6 @@ public class Joueur extends Combattant {
      */
     public void retirerOr(int or) {
         this.or = this.or-or;
-    }
-
-    /**
-     * Function to increase the player's statistics when he gets a new level
-     */
-    public void passageNiveau() {
-        if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
-            niveau++;
-            viemax = viemax + 20;
-            attaque = attaque + 20;
-            vie = vie + 20;
-            if(vie>viemax) {
-                vie = viemax;
-            }
-        }
     }
 
     /**

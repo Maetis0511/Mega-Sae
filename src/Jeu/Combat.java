@@ -110,7 +110,7 @@ public class Combat {
     }
 
     public void combat() {
-        System.out.println("Vous avez découvert un " + this.monstre.getNom() + " de niveau " + this.monstre.getNiveau() + " !");
+        System.out.println("Un " + this.monstre.getNom().toLowerCase(Locale.ROOT) + " sauvage apparait, de niveau " + this.monstre.getNiveau() + " !");
         cri();
         List<Buff> buffs = new ArrayList<>();
         while (joueur.getVie() > 0 && monstre.getVie() > 0) {
@@ -146,8 +146,14 @@ public class Combat {
         }
         if (joueur.getVie() > 0) {
             System.out.println("Vous remportez le combat !");
-            joueur.ajouterXp(100*monstre.getNiveau());
-
+            Random rd = new Random();
+            int nb = rd.nextInt(40) + 80;
+            int nb2 = rd.nextInt(80) + 40;
+            joueur.ajouterXp(nb * monstre.getNiveau());
+            joueur.ajouterOr(nb2);
+            if (monstre.getLoot() != null) {
+                joueur.ajouterItem(monstre.getLoot());
+            }
         }
         if (monstre.getVie() > 0) {
             System.out.println("Vous avez été tué par " + monstre.getNom());
