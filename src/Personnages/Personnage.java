@@ -2,7 +2,6 @@ package Personnages;
 
 public abstract class Personnage {
     private String nom;
-    private String salle;
 
     /**
      * Character's constructor
@@ -18,14 +17,6 @@ public abstract class Personnage {
      */
     public String getNom(){
         return this.nom;
-    }
-
-    /**
-     *
-     * @return Character's room
-     */
-    public String getSalle() {
-        return salle;
     }
 }
 

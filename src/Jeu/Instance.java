@@ -1,6 +1,7 @@
 package Jeu;
 
 import Items.Arme;
+import Items.Item;
 import Items.Consommable;
 import Lieux.Map;
 import Lieux.Salle;
@@ -14,6 +15,7 @@ public class Instance {
     public static List<Arme> listeArmes;
     public static List<Consommable> listeConsommables;
     public static Map m;
+    public static Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
 
     public Instance() {
         listeArmes = new ArrayList<>();
@@ -59,7 +61,6 @@ public class Instance {
         listeArmes.add(a19);
         listeArmes.add(a20);
 
-        Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
         Salle s2 = new Salle("Salle 2", "Salle normal", 2, 1);
         Salle s3 = new Salle("Salle 3", "Salle piègé", 2, 1);
         Salle s4 = new Salle("Salle 4", "Salle de Boss", 3, 2);

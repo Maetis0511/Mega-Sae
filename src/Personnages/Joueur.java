@@ -4,12 +4,10 @@ import Items.*;
 import Jeu.Combat;
 import Jeu.Instance;
 import Lieux.Graphe;
+import Lieux.Map;
 import Lieux.Salle;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Joueur extends Combattant {
     private List<List<Item>> inventaire;
@@ -46,6 +44,14 @@ public class Joueur extends Combattant {
         else if (item instanceof Arme) {
             this.inventaire.get(1).add(item);
         }
+    }
+
+    /**
+     *
+     * @return Character's room
+     */
+    public Salle getSalle() {
+        return pos;
     }
 
     /**
@@ -152,7 +158,7 @@ public class Joueur extends Combattant {
      */
     public boolean changerSalle(Graphe<Salle> map, Salle s) {
         for (Salle salle : map.getVoisins(this.pos)) {
-            if (salle.getId() == s.getId()) {
+            if (salle.getNom().equals(s.getNom())) {
                 this.pos = salle;
                 if (salle.getId() == 1) {
                     Random rd = new Random();
@@ -272,13 +278,14 @@ public class Joueur extends Combattant {
      * Function to display accessible rooms
      * @param map the map
      */
-    public void afficherSalles(Graphe<Salle> map) {
-        System.out.println("Salles accessible :");
+    public java.util.Map<Integer, Salle> afficherSalles(Graphe<Salle> map) {
+        java.util.Map<Integer, Salle> listeSalles = new HashMap<>();
         int cpt = 1;
         for (Salle s : map.getVoisins(this.pos)) {
-            System.out.println(cpt + " - " + s.getNom());
+            listeSalles.put(cpt, s);
             cpt++;
         }
+        return listeSalles;
     }
 
     /**
