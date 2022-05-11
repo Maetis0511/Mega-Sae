@@ -2,13 +2,12 @@ package Jeu;
 
 import Items.Arme;
 import Items.Consommable;
+import Items.Item;
 import Lieux.Salle;
 import Personnages.Joueur;
 import Personnages.Marchand;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Jeu {
     public void ChangerDeSalle(Joueur j1) {
@@ -57,7 +56,34 @@ public class Jeu {
     public void ChoixMarchand(Joueur j1) {
         Scanner sc = new Scanner(System.in);
         Marchand m = new Marchand("Marchand du temple");
-        m.afficherInventaire();
+
+        List<Arme> listeArmePossible = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            if (Instance.listeArmes.get(i).getPrix() != 0) {
+                listeArmePossible.add(Instance.listeArmes.get(i));
+            }
+        }
+
+        Random r = new Random();
+
+        for (int i = 0; i < 5; i++) {
+            int random = r.nextInt(listeArmePossible.size());
+            m.ajouterItem(listeArmePossible.get(random));
+        }
+
+        java.util.Map<Integer, Arme> listeItem = m.afficherMarchand();
+        int max = 0;
+        for (int key : listeItem.keySet()) {
+            Dialogue.dialogues(key + " - " + listeItem.get(key).getNom() + "\n",100);
+            max = key;
+        }
+        Dialogue.dialogues((max + 1) + " - Retour\n",100);
+        System.out.println("Quel item voulez-vous acheter ?");
+        int choix = sc.nextInt();
+        if (choix != (max + 1)) {
+            j1.acheterItem(m, listeItem.get(choix));
+        }
     }
 
     public void SalleNormal(Joueur j1) {
@@ -88,6 +114,7 @@ public class Jeu {
         System.out.println("1 - Changer de salle");
         System.out.println("2 - Utiliser un consommable");
         System.out.println("3 - Equiper une arme");
+        System.out.println("4 - Acheter un item");
 
         Scanner sc = new Scanner(System.in);
         int choix = sc.nextInt();
@@ -118,6 +145,7 @@ public class Jeu {
                 "mais vous discernez tout de même une invitation à faire une tiers list, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
                 "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",0);
         while (fini) {
+            System.out.println(j1.getSalle().getId());
             if (j1.getSalle().getId() == 1) {
                 SalleNormal(j1);
             }

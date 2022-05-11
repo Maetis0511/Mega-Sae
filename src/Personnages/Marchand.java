@@ -1,39 +1,50 @@
 package Personnages;
 
+import Items.Arme;
 import Items.Item;
+import Lieux.Graphe;
+import Lieux.Salle;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Marchand extends Personnage {
-    protected List<Item> inventaire;
+    protected List<Arme> inventaire;
 
     /**
      * Trader's constructor
      * @param nom Item's name
      */
-
     public Marchand(String nom) {
         super(nom);
     }
 
     /**
      * Function to add an item to the trader's inventory
-     * @param item Item to add
+     * @param arme Item to add
      */
-    public void ajouterItem(Item item) {
-        inventaire.add(item);
+    public void ajouterItem(Arme arme) {
+        this.inventaire.add(arme);
+    }
+
+    public void vendreItem(Arme arme) {
+        this.inventaire.remove(arme);
     }
 
     /**
      * Function to display the trader's inventory
      */
-    public void afficherInventaire() {
-        for (Item item : inventaire) {
-            System.out.println(item.getNom());
+    public java.util.Map<Integer, Arme> afficherMarchand() {
+        java.util.Map<Integer, Arme> listeItems = new HashMap<>();
+        int cpt = 1;
+        for (Arme arme : this.inventaire) {
+            System.out.println(cpt + " - " + arme.getNom());
+            listeItems.put(cpt, arme);
         }
+        return listeItems;
     }
 
-    public List<Item> getInventaire() {
+    public List<Arme> getInventaire() {
         return inventaire;
     }
 }

@@ -297,6 +297,12 @@ public class Joueur extends Combattant {
         return listeSalles;
     }
 
+    public void acheterItem(Marchand m, Arme a) {
+        m.vendreItem(a);
+        this.inventaire.get(1).add(a);
+        this.or -= a.getPrix();
+    }
+
     /**
      *
      * @return the player's money
