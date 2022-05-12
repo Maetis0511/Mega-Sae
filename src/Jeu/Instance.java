@@ -5,6 +5,7 @@ import Items.Item;
 import Items.Consommable;
 import Lieux.Map;
 import Lieux.Salle;
+import Personnages.Boss;
 import Personnages.Hostile;
 import Personnages.Joueur;
 
@@ -16,6 +17,8 @@ public class Instance {
     public static List<Consommable> listeConsommables;
     public static Map m;
     public static Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
+    public static Hostile miniB = new Hostile("Nacho aberrant", 2350, 190, s1);
+    public static Boss boss = new Boss("The Stinky One", 5600, 320, s1);
 
     /**
      * Instance constructor
@@ -36,11 +39,11 @@ public class Instance {
         Arme a12 = new Arme("Canif", 3, "Couteau suisse", 200, 240);
         Arme a13 = new Arme("Pied de la biche", 3, "Biche fraîchement tapé", 250, 180);
         Arme a14 = new Arme("Lance pierre", 3, "Lance pierre ", 300);
-        Arme a15 = new Arme("Arc-bouclier immortel", 3, "Arme d'un jeu ABERANT", 450);
+        Arme a15 = new Arme("Arc-bouclier immortel", 3, "Arme d'un jeu ABERRANT", 450);
         Arme a16 = new Arme("Fronde", 3, "Arme médiévale", 150);
         Arme a17 = new Arme("Bolas", 3, "Arme fracassante", 200);
-        Arme a18 = new Arme("Deuillegivre", 3, "Sa coupe fraît", 250, 180);
-        Arme a19 = new Arme("Portecendre", 3, "Sa coupe chaud", 300);
+        Arme a18 = new Arme("Deuillegivre", 3, "Ca coupe fraît", 250, 180);
+        Arme a19 = new Arme("Portecendre", 3, "Ca coupe chaud", 300);
         Arme a20 = new Arme("Rhaast", 3, "Edgy dans une faux tah sasuke", 450);
 
         listeArmes.add(a1);
@@ -82,7 +85,10 @@ public class Instance {
         Salle s17 = new Salle("Salle 17", "Escalier Nord menant à la terrase", 7, 1);
         Salle s18 = new Salle("Salle 18", "Escalier Sud menant à la terrase", 7, 1);
         Salle s19 = new Salle("Salle 19", "Terrasse du temple", 8, 3);
-        Salle s20 = new Salle("Salle 20", "Salle du rituel", 9, 2);
+        Salle s20 = new Salle("Salle 20", "Salle du rituel", 9, 5);
+
+        miniB.setPos(s4);
+        boss.setPos(s20);
 
         m = new Map();
 

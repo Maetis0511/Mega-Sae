@@ -4,25 +4,50 @@ import Items.Arme;
 import Items.Consommable;
 import Items.Item;
 import Lieux.Salle;
+import Personnages.Boss;
 import Personnages.Joueur;
 import Personnages.Marchand;
 
 import java.util.*;
 
 public class Jeu {
+    public static boolean end = true;
+    public static boolean alive = true;
+    public static boolean hasKey = false;
+
+    public int ChoixUser(int nbChoix) {
+        Scanner sc = new Scanner(System.in);
+        int choix = 0;
+        boolean ex = true;
+        System.out.println(nbChoix);
+        while ((choix < 1 || choix > nbChoix) && ex) {
+            try {
+                choix = sc.nextInt();
+                ex = false;
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Veuillez entrer un nombre");
+                sc.nextLine();
+            }
+            if (choix < 1 || choix > nbChoix) {
+                System.out.println("Veuillez entrer un nombre entre 1 et " + nbChoix);
+            }
+        }
+        sc.close();
+        return choix;
+    }
+
     /**
      * Function to change the current room
      * @param j1 the player who is changing the room
      */
     public void ChangerDeSalle(Joueur j1) {
-        Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Salle> listeSalle = j1.afficherSalles(Instance.m.getMap());
         for (int key : listeSalle.keySet()) {
-            Dialogue.dialogues(key + " - " + listeSalle.get(key).getNom() + "\n",100);
+            Dialogue.dialogues(key + " - " + listeSalle.get(key).getDescription() + "\n",100);
         }
         System.out.println("Quelle salle voulez-vous aller ?");
-        int choix = sc.nextInt();
-        j1.changerSalle(Instance.m.getMap(), listeSalle.get(choix));
+        j1.changerSalle(Instance.m.getMap(), listeSalle.get(ChoixUser(listeSalle.size())));
     }
 
     /**
@@ -30,7 +55,6 @@ public class Jeu {
      * @param j1 the player who is using the consumable
      */
     public void ChoixConsommable(Joueur j1) {
-        Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Consommable> listeConsommable = j1.afficherConsommable();
         int max = 0;
         for (int key : listeConsommable.keySet()) {
@@ -39,7 +63,7 @@ public class Jeu {
         }
         Dialogue.dialogues((max + 1) + " - Retour\n",100);
         System.out.println("Quel consommable voulez-vous utiliser ?");
-        int choix = sc.nextInt();
+        int choix = ChoixUser(listeConsommable.size() + 1);
         if (choix != (max + 1)) {
             j1.utiliserConsommable(listeConsommable.get(choix), false);
         }
@@ -50,7 +74,6 @@ public class Jeu {
      * @param j1 the player who is using the weapon
      */
     public void ChoixArme(Joueur j1) {
-        Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Arme> listeArme = j1.afficherArme();
         int max = 0;
         for (int key : listeArme.keySet()) {
@@ -59,7 +82,7 @@ public class Jeu {
         }
         Dialogue.dialogues((max + 1) + " - Retour\n",100);
         System.out.println("Quel arme voulez-vous utiliser ?");
-        int choix = sc.nextInt();
+        int choix = ChoixUser(listeArme.size() + 1);
         if (choix != (max + 1)) {
             j1.choisirArme(listeArme.get(choix));
         }
@@ -70,7 +93,6 @@ public class Jeu {
      * @param j1 the player who is buying
      */
     public void ChoixMarchand(Joueur j1) {
-        Scanner sc = new Scanner(System.in);
         Marchand m = new Marchand("Marchand du temple");
 
         List<Arme> listeArmePossible = new ArrayList<>();
@@ -97,7 +119,7 @@ public class Jeu {
         }
         Dialogue.dialogues((max + 1) + " - Retour\n",100);
         System.out.println("Quel item voulez-vous acheter ?");
-        int choix = sc.nextInt();
+        int choix = ChoixUser(listeItem.size() + 1);
         if (choix != (max + 1)) {
             j1.acheterItem(m, listeItem.get(choix));
         }
@@ -114,8 +136,7 @@ public class Jeu {
         System.out.println("2 - Utiliser un consommable");
         System.out.println("3 - Equiper une arme");
 
-        Scanner sc = new Scanner(System.in);
-        int choix = sc.nextInt();
+        int choix = ChoixUser(3);
         switch (choix) {
             case 1:
                 ChangerDeSalle(j1);
@@ -141,8 +162,7 @@ public class Jeu {
         System.out.println("3 - Equiper une arme");
         System.out.println("4 - Acheter un item");
 
-        Scanner sc = new Scanner(System.in);
-        int choix = sc.nextInt();
+        int choix = ChoixUser(4);
         switch (choix) {
             case 1:
                 ChangerDeSalle(j1);
@@ -159,27 +179,70 @@ public class Jeu {
         }
     }
 
+    public void SalleFabrice(Joueur j1) {
+        if (!hasKey) {
+            Dialogue.dialogues("Vous entrez dans cette salle semblant vide, quand vous apercevez arriver par une fissure dans le bâtiment un singe, c'est le singe que vous aviez vu précédemment.\n" +
+                    "Il est grand et arbore une médaille avec écrit \"Fabrice\".\nIl se pose sur une stèle au centre de la salle, vous vous approchez de lui lorsqu'il commence à vous tendre un objet.\n" +
+                    "Vous prenez l'objet et apercevez qu'il s'agit d'une clé assez étrange.\nUne fois la clé récupérée Fabrice s'enfuit dans l'immense jungle qui vous entoure par la même fissure par laquelle il est rentré.\n", 65);
+            SalleNormal(j1);
+            hasKey = true;
+        }
+        else {
+            SalleNormal(j1);
+        }
+    }
+
+    public void SalleMiniBoss(Joueur j1) {
+        Dialogue.dialogues("Vous apercevez une silhouette au milieu de la pièce...\nQuand soudain elle se met à vous attaquer.", 65);
+        Combat combat = new Combat(j1, Instance.miniB);
+        combat.combat();
+        j1.getSalle().setId(1);
+    }
+
+    public void SalleBoss(Joueur j1) {
+        Dialogue.dialogues("Vous y êtes enfin, le pistolet acrobatique est juste devant vous sur sa stèle.\nVous avancez et l'enlevez de sa stèle.\nTout à coup, un " +
+                "bruit retenti et une forme humaine tomba du ciel. Il était là, l'indigène aux tierlist, entrain de vous sauter dessus en criant ce qui s'apparente à son nom, THE STINKY ONE.", 65);
+        Combat combat = new Combat(j1, Instance.boss);
+        combat.combat();
+        if (Instance.boss.getVie() <= 0) {
+            end = false;
+        }
+    }
+
     /**
      * Function to execute the main code of the game
      */
     public void executer() {
         Instance i = new Instance();
         Joueur j1 = new Joueur("Pilote Canadien",750,1000000,Instance.s1);
-        boolean fini = true;
 
         Dialogue.dialogues("Vous pilotez un avion en provenance du canada, vous survolez le Mexique et vou... OH NON..." +
                 "VOUS PERDEZ LE CONTRÔLE DE L'AVION.\nVous vous écrasez dans la jungle, vous regardez autour de vous et vous voyez un singe portant une médaille Fabrice, vous marchez en direction du sud... \n" +
                 "Quand tout à coup un indigène sauvage apparaît, il parle dans un vieux français que vous peinez à comprendre,\n" +
-                "mais vous discernez tout de même une invitation à faire une tiers list, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
+                "mais vous discernez tout de même une invitation à faire une tierlist, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
                 "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",0);
-        while (fini) {
+        while (end) {
             System.out.println(j1.getSalle().getId());
             if (j1.getSalle().getId() == 1) {
                 SalleNormal(j1);
             }
+            if (j1.getSalle().getId() == 2) {
+                SalleMiniBoss(j1);
+            }
             if (j1.getSalle().getId() == 3) {
                 SalleMarchand(j1);
             }
+            if (j1.getSalle().getId() == 4) {
+                SalleFabrice(j1);
+            }
+            if (j1.getSalle().getId() == 5) {
+                SalleBoss(j1);
+            }
+        }
+        if (alive) {
+            Dialogue.dialogues("Vous avez vaincu the stinky one !", 65);
+            Dialogue.dialogues("Vous sortez enfin de ce temple miteux, une soudaine envie de faire un backflip vous prend.\n" +
+                    "Vous appercevez au loin un cerf dans la jungle et vous le distinguez entrain de manger un toast.", 65);
         }
     }
 }

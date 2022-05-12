@@ -172,6 +172,8 @@ public class Combat {
             }
         }
         if (monstre.getVie() > 0) {
+            Jeu.end = false;
+            Jeu.alive = false;
             System.out.println("Vous avez été tué par " + monstre.getNom());
         }
     }

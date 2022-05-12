@@ -72,6 +72,10 @@ public class Salle {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      *
      * @return Room's name and description

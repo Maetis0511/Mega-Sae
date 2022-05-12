@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Hostile extends Combattant {
     private Item loot;
-    private Salle pos;
+    protected Salle pos;
 
     /**
      * Mob constructor with loot
@@ -52,6 +52,10 @@ public class Hostile extends Combattant {
             c.perteVie(this.getAttaque());
             System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
         }
+    }
+
+    public void setPos(Salle pos) {
+        this.pos = pos;
     }
 
     public Item getLoot() {
