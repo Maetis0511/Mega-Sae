@@ -8,11 +8,22 @@ import java.util.Random;
 public class Boss extends Hostile{
     private boolean isArmor;
 
+    /**
+     * Boss constructor
+     * @param nom Boss's name
+     * @param vie Boss's life
+     * @param attaque Boss's attack
+     * @param s Room where the Boss is
+     */
     public Boss(String nom, int vie, int attaque, Salle s) {
         super(nom, vie, attaque, s);
         this.isArmor = false;
     }
 
+    /**
+     * Set boss's attack
+     * @param c the attack of the mob
+     */
     public void attaque(Combattant c){
         Random r = new Random();
         int nb = r.nextInt(100);

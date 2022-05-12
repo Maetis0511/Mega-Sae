@@ -38,6 +38,9 @@ public class Map {
         return this.map.getVoisins(s);
     }
 
+    /**
+     * @return the map
+     */
     public Graphe<Salle> getMap() {
         return this.map;
     }

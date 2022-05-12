@@ -29,6 +29,10 @@ public class Marchand extends Personnage {
         this.inventaire.add(arme);
     }
 
+    /**
+     * Function to sell an item
+     * @param arme Weapon to sell
+     */
     public void vendreItem(Arme arme) {
         this.inventaire.remove(arme);
     }
@@ -46,6 +50,9 @@ public class Marchand extends Personnage {
         return listeItems;
     }
 
+    /**
+     * @return the inventory
+     */
     public List<Arme> getInventaire() {
         return inventaire;
     }
