@@ -5,6 +5,7 @@ import Items.Item;
 import Lieux.Graphe;
 import Lieux.Salle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Marchand extends Personnage {
      */
     public Marchand(String nom) {
         super(nom);
+        this.inventaire = new ArrayList<>();
     }
 
     /**
@@ -38,8 +40,8 @@ public class Marchand extends Personnage {
         java.util.Map<Integer, Arme> listeItems = new HashMap<>();
         int cpt = 1;
         for (Arme arme : this.inventaire) {
-            System.out.println(cpt + " - " + arme.getNom());
             listeItems.put(cpt, arme);
+            cpt++;
         }
         return listeItems;
     }

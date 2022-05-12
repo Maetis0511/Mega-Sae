@@ -59,7 +59,7 @@ public class Jeu {
 
         List<Arme> listeArmePossible = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < Instance.listeArmes.size(); i++) {
             if (Instance.listeArmes.get(i).getPrix() != 0) {
                 listeArmePossible.add(Instance.listeArmes.get(i));
             }
@@ -70,6 +70,7 @@ public class Jeu {
         for (int i = 0; i < 5; i++) {
             int random = r.nextInt(listeArmePossible.size());
             m.ajouterItem(listeArmePossible.get(random));
+            listeArmePossible.remove(random);
         }
 
         java.util.Map<Integer, Arme> listeItem = m.afficherMarchand();

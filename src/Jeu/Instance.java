@@ -25,12 +25,12 @@ public class Instance {
         Arme a4 = new Arme("Babouche de la grand-mère", 3, "", 300);
         Arme a5 = new Arme("Pistolet accrobatique", 3, "Relique du temple Miteux", 450);
         Arme a6 = new Arme("Hache du berserk", 3, "", 150);
-        Arme a7 = new Arme("Kunaî", 3, "", 200);
+        Arme a7 = new Arme("Kunaî", 3, "", 200, 150);
         Arme a8 = new Arme("Katana", 3, "", 250, 180);
-        Arme a9 = new Arme("Arc", 3, "", 300);
-        Arme a10 = new Arme("Torche", 3, "", 450);
-        Arme a11 = new Arme("Couperet noir", 3, "", 150);
-        Arme a12 = new Arme("Canif", 3, "", 200);
+        Arme a9 = new Arme("Arc", 3, "", 300, 400);
+        Arme a10 = new Arme("Torche", 3, "", 230);
+        Arme a11 = new Arme("Couperet noir", 3, "", 150, 300);
+        Arme a12 = new Arme("Canif", 3, "", 200, 240);
         Arme a13 = new Arme("Pied de biche", 3, "", 250, 180);
         Arme a14 = new Arme("Lance pierre", 3, "", 300);
         Arme a15 = new Arme("", 3, "", 450);
