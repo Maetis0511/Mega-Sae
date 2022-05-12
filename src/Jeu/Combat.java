@@ -14,12 +14,20 @@ public class Combat {
     private Hostile monstre;
     public static boolean boosted;
 
+    /**
+     * Fight constructor
+     * @param joueur Player who fights
+     * @param monstre Monster who fights
+     */
     public Combat(Joueur joueur, Hostile monstre) {
         this.joueur = joueur;
         this.monstre = monstre;
         this.boosted = false;
     }
 
+    /**
+     * Function that screams a random word when a mob spawn
+     */
     public void cri() {
         try {
             File myObj = new File("src/ressources/Wordlist");
@@ -42,12 +50,17 @@ public class Combat {
         }
     }
 
-    public void combatStep(boolean ex, List<Buff> buffs) {
+    /**
+     * Function to manage player combat
+     * @param buffs List of buffs
+     */
+    public void combatStep(List<Buff> buffs) {
         System.out.println("Que voulez vous faire ?");
         System.out.println("1 - Attaquer");
         System.out.println("2 - Utiliser un consommable");
         Scanner scanner = new Scanner(System.in);
         int choix = 0;
+        boolean ex = true;
         while (ex) {
             try {
                 choix = scanner.nextInt();
@@ -105,10 +118,13 @@ public class Combat {
             }
         }
         else if (choix == 3) {
-            combatStep(ex, buffs);
+            combatStep(buffs);
         }
     }
 
+    /**
+     * Function to mange the combat
+     */
     public void combat() {
         System.out.println("Un " + this.monstre.getNom().toLowerCase(Locale.ROOT) + " sauvage apparait, de niveau " + this.monstre.getNiveau() + " !");
         cri();
@@ -122,10 +138,10 @@ public class Combat {
 
             //c1 attaque c2
 
-            combatStep(ex, buffs);
+            combatStep(buffs);
 
             if (boosted) {
-                combatStep(ex, buffs);
+                combatStep(buffs);
             }
 
             if (monstre.getVie() > 0) {
