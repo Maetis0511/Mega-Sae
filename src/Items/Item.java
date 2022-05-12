@@ -48,10 +48,17 @@ public abstract class Item {
         return name;
     }
 
+    /**
+     * @return Item's price
+     */
     public int getPrix() {
         return prix;
     }
 
+    /**
+     * Function to set the price of the item
+     * @param prix the price to set
+     */
     public void setPrix(int prix) {
         this.prix = prix;
     }
