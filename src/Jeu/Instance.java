@@ -17,6 +17,9 @@ public class Instance {
     public static Map m;
     public static Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
 
+    /**
+     * Instance constructor
+     */
     public Instance() {
         listeArmes = new ArrayList<>();
         Arme a1 = new Arme("Épée", 3, "Épée rouillé", 150);

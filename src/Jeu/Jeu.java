@@ -10,6 +10,10 @@ import Personnages.Marchand;
 import java.util.*;
 
 public class Jeu {
+    /**
+     * Function to change the current room
+     * @param j1 the player who is changing the room
+     */
     public void ChangerDeSalle(Joueur j1) {
         Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Salle> listeSalle = j1.afficherSalles(Instance.m.getMap());
@@ -21,6 +25,10 @@ public class Jeu {
         j1.changerSalle(Instance.m.getMap(), listeSalle.get(choix));
     }
 
+    /**
+     * Function to choose the consumable to use
+     * @param j1 the player who is using the consumable
+     */
     public void ChoixConsommable(Joueur j1) {
         Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Consommable> listeConsommable = j1.afficherConsommable();
@@ -37,6 +45,10 @@ public class Jeu {
         }
     }
 
+    /**
+     * Function to choose the weapon to use
+     * @param j1 the player who is using the weapon
+     */
     public void ChoixArme(Joueur j1) {
         Scanner sc = new Scanner(System.in);
         java.util.Map<Integer, Arme> listeArme = j1.afficherArme();
@@ -53,6 +65,10 @@ public class Jeu {
         }
     }
 
+    /**
+     * Function to choose what to buy to the trader
+     * @param j1 the player who is buying
+     */
     public void ChoixMarchand(Joueur j1) {
         Scanner sc = new Scanner(System.in);
         Marchand m = new Marchand("Marchand du temple");
@@ -87,6 +103,10 @@ public class Jeu {
         }
     }
 
+    /**
+     * Function to manage the player's action when he is in a normal room
+     * @param j1 the player who is in a normal room
+     */
     public void SalleNormal(Joueur j1) {
         Dialogue.dialogues(j1.getSalle().getDescription() + "\n",100);
         System.out.println("Que voulez-vous faire ?");
@@ -109,6 +129,10 @@ public class Jeu {
         }
     }
 
+    /**
+     * Function to manage the player's action when he is in a trader room
+     * @param j1 the player who is in a trader room
+     */
     public void SalleMarchand(Joueur j1) {
         Dialogue.dialogues(j1.getSalle().getDescription() + "\n",100);
         System.out.println("Que voulez-vous faire ?");
@@ -135,6 +159,9 @@ public class Jeu {
         }
     }
 
+    /**
+     * Function to execute the main code of the game
+     */
     public void executer() {
         Instance i = new Instance();
         Joueur j1 = new Joueur("Pilote Canadien",750,1000000,Instance.s1);
