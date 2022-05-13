@@ -19,7 +19,6 @@ public class Jeu {
         Scanner sc = new Scanner(System.in);
         int choix = 0;
         boolean ex = true;
-        System.out.println(nbChoix);
         while ((choix < 1 || choix > nbChoix) && ex) {
             try {
                 choix = sc.nextInt();
@@ -33,7 +32,7 @@ public class Jeu {
                 System.out.println("Veuillez entrer un nombre entre 1 et " + nbChoix);
             }
         }
-        sc.close();
+        System.out.println(choix);
         return choix;
     }
 
