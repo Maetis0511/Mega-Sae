@@ -137,9 +137,15 @@ public class Jeu {
 
         int choix = ChoixUser(3);
         switch (choix) {
-            case 1 -> ChangerDeSalle(j1);
-            case 2 -> ChoixConsommable(j1);
-            case 3 -> ChoixArme(j1);
+            case 1:
+                ChangerDeSalle(j1);
+                break;
+            case 2:
+                ChoixConsommable(j1);
+                break;
+            case 3:
+                ChoixArme(j1);
+                break;
         }
     }
 
@@ -157,10 +163,18 @@ public class Jeu {
 
         int choix = ChoixUser(4);
         switch (choix) {
-            case 1 -> ChangerDeSalle(j1);
-            case 2 -> ChoixConsommable(j1);
-            case 3 -> ChoixArme(j1);
-            case 4 -> ChoixMarchand(j1);
+            case 1:
+                ChangerDeSalle(j1);
+                break;
+            case 2:
+                ChoixConsommable(j1);
+                break;
+            case 3:
+                ChoixArme(j1);
+                break;
+            case 4:
+                ChoixMarchand(j1);
+                break;
         }
     }
 
