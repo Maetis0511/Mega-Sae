@@ -221,6 +221,8 @@ public class Jeu {
                 "Quand tout à coup un indigène sauvage apparaît, il parle dans un vieux français que vous peinez à comprendre,\n" +
                 "mais vous discernez tout de même une invitation à faire une tierlist, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
                 "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",0);
+        j1.ajouterItem(Instance.a12);
+        j1.choisirArme(Instance.a12);
         while (end) {
             if (j1.getSalle().getId() == 1) {
                 SalleNormal(j1);

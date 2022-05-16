@@ -20,6 +20,7 @@ public class Instance {
     public static Hostile miniB = new Hostile("Nacho aberrant", 2350, 190, s1);
     public static Boss boss = new Boss("The Stinky One", 5600, 320, s1);
     public static Arme a5 = new Arme("Pistolet accrobatique", 3, "Relique du temple Miteux", 450);
+    public static Arme a12 = new Arme("Canif", 3, "Couteau suisse", 200);
 
     /**
      * Instance constructor
@@ -36,7 +37,6 @@ public class Instance {
         Arme a9 = new Arme("Arc", 3, "Arc de combat", 300, 150);
         Arme a10 = new Arme("Torche", 3, "Torche permettant d'éclairer les salles", 230,100);
         Arme a11 = new Arme("Couperet noir", 3, "Couperet à la lame noire", 150, 150);
-        Arme a12 = new Arme("Canif", 3, "Couteau suisse", 200);
         Arme a13 = new Arme("Pied de la biche", 3, "Biche fraîchement tapé", 250, 380);
         Arme a14 = new Arme("Lance pierre", 3, "Lance pierre ", 300,150);
         Arme a15 = new Arme("Arc-bouclier immortel", 3, "Arme d'un jeu ABERRANT", 450,280);
