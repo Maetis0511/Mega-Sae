@@ -137,15 +137,9 @@ public class Jeu {
 
         int choix = ChoixUser(3);
         switch (choix) {
-            case 1:
-                ChangerDeSalle(j1);
-                break;
-            case 2:
-                ChoixConsommable(j1);
-                break;
-            case 3:
-                ChoixArme(j1);
-                break;
+            case 1 -> ChangerDeSalle(j1);
+            case 2 -> ChoixConsommable(j1);
+            case 3 -> ChoixArme(j1);
         }
     }
 
@@ -163,18 +157,10 @@ public class Jeu {
 
         int choix = ChoixUser(4);
         switch (choix) {
-            case 1:
-                ChangerDeSalle(j1);
-                break;
-            case 2:
-                ChoixConsommable(j1);
-                break;
-            case 3:
-                ChoixArme(j1);
-                break;
-            case 4:
-                ChoixMarchand(j1);
-                break;
+            case 1 -> ChangerDeSalle(j1);
+            case 2 -> ChoixConsommable(j1);
+            case 3 -> ChoixArme(j1);
+            case 4 -> ChoixMarchand(j1);
         }
     }
 
@@ -221,7 +207,7 @@ public class Jeu {
                 "VOUS PERDEZ LE CONTRÔLE DE L'AVION.\nVous vous écrasez dans la jungle, vous regardez autour de vous et vous voyez un singe portant une médaille Fabrice, vous marchez en direction du sud... \n" +
                 "Quand tout à coup un indigène sauvage apparaît, il parle dans un vieux français que vous peinez à comprendre,\n" +
                 "mais vous discernez tout de même une invitation à faire une tierlist, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
-                "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",0);
+                "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",65);
         j1.ajouterItem(Instance.a12);
         j1.choisirArme(Instance.a12);
         while (end) {
