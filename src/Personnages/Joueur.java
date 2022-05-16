@@ -117,7 +117,7 @@ public class Joueur extends Combattant {
      * Function to choose a player's weapon
      */
     public void choisirArme(Arme a) {
-        System.out.println("Vous avez choisi l'arme " + a.getNom());
+        System.out.println("Vous avez équipé " + a.getNom());
         this.armeActive = a;
     }
 

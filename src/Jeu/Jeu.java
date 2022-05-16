@@ -198,6 +198,8 @@ public class Jeu {
     }
 
     public void SalleBoss(Joueur j1) {
+        j1.ajouterItem(Instance.a5);
+        j1.choisirArme(Instance.a5);
         Dialogue.dialogues("Vous y êtes enfin, le pistolet acrobatique est juste devant vous sur sa stèle.\nVous avancez et l'enlevez de sa stèle.\nTout à coup, un " +
                 "bruit retenti et une forme humaine tomba du ciel. Il était là, l'indigène aux tierlist, entrain de vous sauter dessus en criant ce qui s'apparente à son nom, THE STINKY ONE.", 65);
         Combat combat = new Combat(j1, Instance.boss);

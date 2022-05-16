@@ -19,6 +19,7 @@ public class Instance {
     public static Salle s1 = new Salle("Salle 1", "Entrée du temple miteux", 1, 1);
     public static Hostile miniB = new Hostile("Nacho aberrant", 2350, 190, s1);
     public static Boss boss = new Boss("The Stinky One", 5600, 320, s1);
+    public static Arme a5 = new Arme("Pistolet accrobatique", 3, "Relique du temple Miteux", 450);
 
     /**
      * Instance constructor
@@ -29,7 +30,6 @@ public class Instance {
         Arme a2 = new Arme("Arbalette", 3, "", 200);
         Arme a3 = new Arme("Lame de Doran", 3, "Un bon item à 450", 250, 180);
         Arme a4 = new Arme("Babouche de la grand-mère", 3, "La relique des grands-mères pour frapper les petits enfants", 300);
-        Arme a5 = new Arme("Pistolet accrobatique", 3, "Relique du temple Miteux", 450);
         Arme a6 = new Arme("Hache du berserk", 3, "Hache ayant appartenue a un viking", 150);
         Arme a7 = new Arme("Kunaî", 3, "Arme de ninja", 200, 150);
         Arme a8 = new Arme("Katana", 3, "Katana ayant appartenue a un grand samouraï", 250, 180);
