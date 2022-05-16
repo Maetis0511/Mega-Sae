@@ -26,25 +26,25 @@ public class Instance {
      */
     public Instance() {
         listeArmes = new ArrayList<>();
-        Arme a1 = new Arme("Épée", 3, "Épée rouillé", 150);
-        Arme a2 = new Arme("Arbalette", 3, "", 200);
+        Arme a1 = new Arme("Épée", 3, "Épée rouillé", 150,100);
+        Arme a2 = new Arme("Arbalette", 3, "", 200,150);
         Arme a3 = new Arme("Lame de Doran", 3, "Un bon item à 450", 250, 180);
-        Arme a4 = new Arme("Babouche de la grand-mère", 3, "La relique des grands-mères pour frapper les petits enfants", 300);
-        Arme a6 = new Arme("Hache du berserk", 3, "Hache ayant appartenue a un viking", 150);
-        Arme a7 = new Arme("Kunaî", 3, "Arme de ninja", 200, 150);
-        Arme a8 = new Arme("Katana", 3, "Katana ayant appartenue a un grand samouraï", 250, 180);
-        Arme a9 = new Arme("Arc", 3, "Arc de combat", 300, 400);
-        Arme a10 = new Arme("Torche", 3, "Torche permettant d'éclairer les salles", 230);
-        Arme a11 = new Arme("Couperet noir", 3, "Couperet à la lame noire", 150, 300);
-        Arme a12 = new Arme("Canif", 3, "Couteau suisse", 200, 240);
-        Arme a13 = new Arme("Pied de la biche", 3, "Biche fraîchement tapé", 250, 180);
-        Arme a14 = new Arme("Lance pierre", 3, "Lance pierre ", 300);
-        Arme a15 = new Arme("Arc-bouclier immortel", 3, "Arme d'un jeu ABERRANT", 450);
-        Arme a16 = new Arme("Fronde", 3, "Arme médiévale", 150);
-        Arme a17 = new Arme("Bolas", 3, "Arme fracassante", 200);
-        Arme a18 = new Arme("Deuillegivre", 3, "Ca coupe fraît", 250, 180);
-        Arme a19 = new Arme("Portecendre", 3, "Ca coupe chaud", 300);
-        Arme a20 = new Arme("Rhaast", 3, "Edgy dans une faux tah sasuke", 450);
+        Arme a4 = new Arme("Babouche de la grand-mère", 3, "La relique des grands-mères pour frapper les petits enfants", 300,400);
+        Arme a6 = new Arme("Hache du berserk", 3, "Hache ayant appartenue a un viking", 150,200);
+        Arme a7 = new Arme("Kunaî", 3, "Arme de ninja", 200, 200);
+        Arme a8 = new Arme("Katana", 3, "Katana ayant appartenue a un grand samouraï", 250, 250);
+        Arme a9 = new Arme("Arc", 3, "Arc de combat", 300, 150);
+        Arme a10 = new Arme("Torche", 3, "Torche permettant d'éclairer les salles", 230,100);
+        Arme a11 = new Arme("Couperet noir", 3, "Couperet à la lame noire", 150, 150);
+        Arme a12 = new Arme("Canif", 3, "Couteau suisse", 200);
+        Arme a13 = new Arme("Pied de la biche", 3, "Biche fraîchement tapé", 250, 380);
+        Arme a14 = new Arme("Lance pierre", 3, "Lance pierre ", 300,150);
+        Arme a15 = new Arme("Arc-bouclier immortel", 3, "Arme d'un jeu ABERRANT", 450,280);
+        Arme a16 = new Arme("Fronde", 3, "Arme médiévale", 150,220);
+        Arme a17 = new Arme("Bolas", 3, "Arme fracassante", 200, 260);
+        Arme a18 = new Arme("Deuillegivre", 3, "Ca coupe fraît", 250, 200);
+        Arme a19 = new Arme("Portecendre", 3, "Ca coupe chaud", 320);
+        Arme a20 = new Arme("Rhaast", 3, "Edgy dans une faux tah sasuke", 450, 300);
 
         listeArmes.add(a1);
         listeArmes.add(a2);
