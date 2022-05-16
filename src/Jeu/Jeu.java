@@ -110,12 +110,13 @@ public class Jeu {
         }
 
         java.util.Map<Integer, Arme> listeItem = m.afficherMarchand();
+        Dialogue.dialogues("Vous avez " + j1.getOr() + " pièces d'or.\n",65);
         int max = 0;
         for (int key : listeItem.keySet()) {
-            Dialogue.dialogues(key + " - " + listeItem.get(key).getNom() + "\n",100);
+            Dialogue.dialogues(key + " - " + listeItem.get(key).getNom() + ", prix : " + listeItem.get(key).getPrix() + "\n" ,65);
             max = key;
         }
-        Dialogue.dialogues((max + 1) + " - Retour\n",100);
+        Dialogue.dialogues((max + 1) + " - Retour\n",65);
         System.out.println("Quel item voulez-vous acheter ?");
         int choix = ChoixUser(listeItem.size() + 1);
         if (choix != (max + 1)) {
@@ -214,7 +215,7 @@ public class Jeu {
      */
     public void executer() {
         Instance i = new Instance();
-        Joueur j1 = new Joueur("Pilote Canadien",750,350, Instance.s1);
+        Joueur j1 = new Joueur("Pilote Canadien",750,100, Instance.s1);
 
         Dialogue.dialogues("Vous pilotez un avion en provenance du canada, vous survolez le Mexique et vou... OH NON..." +
                 "VOUS PERDEZ LE CONTRÔLE DE L'AVION.\nVous vous écrasez dans la jungle, vous regardez autour de vous et vous voyez un singe portant une médaille Fabrice, vous marchez en direction du sud... \n" +

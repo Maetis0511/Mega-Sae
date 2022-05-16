@@ -128,7 +128,7 @@ public class Joueur extends Combattant {
     public void attaque(Combattant c) {
         if (this.armeActive != null) {
             c.perteVie(this.getAttaque() + this.armeActive.getDegats());
-            System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + this.getAttaque() + this.armeActive.getDegats() + " points de dégats");
+            System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + (this.getAttaque() + this.armeActive.getDegats()) + " points de dégats");
         }
         else {
             c.perteVie(this.getAttaque());

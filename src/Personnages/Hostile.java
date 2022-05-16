@@ -19,7 +19,7 @@ public class Hostile extends Combattant {
      * @param s Mob's room
      */
     public Hostile(String nom, int vie, int attaque, Item loot, Salle s) {
-        super(nom, vie, attaque * (s.getNiveauSalle() / 15), s.getNiveauSalle(), 0);
+        super(nom, vie, attaque, s.getNiveauSalle(), 0);
         this.loot = loot;
         this.pos = s;
     }
