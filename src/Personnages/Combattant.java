@@ -50,13 +50,14 @@ public abstract class Combattant extends Personnage {
         this.xp += xp;
         if (this.getXp() >= 1000*(0.25*(this.getNiveau()+1))) {
             System.out.println("Vous avez atteint le niveau " + (this.getNiveau()+1));
-            niveau++;
-            viemax = viemax + 20;
-            attaque = attaque + 20;
-            vie = vie + 20;
-            if(vie>viemax) {
-                vie = viemax;
+            this.niveau++;
+            this.viemax = this.viemax + 20;
+            this.attaque = this.attaque + 20;
+            this.vie = this.vie + 20;
+            if(this.vie > this.viemax) {
+                this.vie = this.viemax;
             }
+            this.xp = 0;
         }
     }
 

@@ -281,9 +281,11 @@ public class Joueur extends Combattant {
                 else {
                     if (Jeu.hasKey) {
                         this.pos = salle;
+                        return true;
                     }
                     else {
                         System.out.println("Il semblerait que la porte soit verrouillée, il y a une serrure sur la porte.");
+                        return false;
                     }
                 }
             }

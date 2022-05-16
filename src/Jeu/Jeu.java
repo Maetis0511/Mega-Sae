@@ -32,7 +32,6 @@ public class Jeu {
                 System.out.println("Veuillez entrer un nombre entre 1 et " + nbChoix);
             }
         }
-        System.out.println(choix);
         return choix;
     }
 
@@ -213,7 +212,7 @@ public class Jeu {
      */
     public void executer() {
         Instance i = new Instance();
-        Joueur j1 = new Joueur("Pilote Canadien",750,1000000,Instance.s1);
+        Joueur j1 = new Joueur("Pilote Canadien",750,350, Instance.s1);
 
         Dialogue.dialogues("Vous pilotez un avion en provenance du canada, vous survolez le Mexique et vou... OH NON..." +
                 "VOUS PERDEZ LE CONTRÔLE DE L'AVION.\nVous vous écrasez dans la jungle, vous regardez autour de vous et vous voyez un singe portant une médaille Fabrice, vous marchez en direction du sud... \n" +
@@ -221,7 +220,6 @@ public class Jeu {
                 "mais vous discernez tout de même une invitation à faire une tierlist, vous êtes alors pris à la gorge par une odeur pestilentielle, vous prenez la fuite.\n" +
                 "Vous tombez sur un temple maya et décidez d'y rentrer, la porte se ferme soudainement, il y fait sombre et vous trouvez un canif enfouis dans votre poche.\n",0);
         while (end) {
-            System.out.println(j1.getSalle().getId());
             if (j1.getSalle().getId() == 1) {
                 SalleNormal(j1);
             }
@@ -239,7 +237,7 @@ public class Jeu {
             }
         }
         if (alive) {
-            Dialogue.dialogues("Vous avez vaincu the stinky one !", 65);
+            Dialogue.dialogues("Vous avez vaincu the stinky one !\n", 65);
             Dialogue.dialogues("Vous sortez enfin de ce temple miteux, une soudaine envie de faire un backflip vous prend.\n" +
                     "Vous appercevez au loin un cerf dans la jungle et vous le distinguez entrain de manger un toast.", 65);
         }

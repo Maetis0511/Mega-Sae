@@ -30,28 +30,28 @@ public class Boss extends Hostile{
         if(isArmor){
             if (nb < 50) {
                 c.perteVie(this.getAttaque());
-                System.out.println("ay pif");
+                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 50 && nb < 85) {
                 c.perteVie((int) (this.getAttaque() * 1.5));
-                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
+                System.out.println("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 85) {
                 this.setVie(this.getVie() + (int) (this.getAttaque() * 0.5));
-                System.out.println("Le boss c'est soignée de " + this.getAttaque() + " points de vie");
+                System.out.println("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
             }
         }else {
             if (nb < 50) {
                 c.perteVie(this.getAttaque());
-                System.out.println("ay pif");
+                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 50 && nb < 70) {
                 c.perteVie((int) (this.getAttaque() * 1.5));
-                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
+                System.out.println("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 70 && nb < 85) {
                 this.setVie(this.getVie() + (int) (this.getAttaque() * 0.5));
-                System.out.println("Le boss c'est soignée de " + this.getAttaque() + " points de vie");
+                System.out.println("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
             }
             if (nb >= 85) {
                 this.isArmor = true;
