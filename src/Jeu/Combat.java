@@ -1,6 +1,8 @@
 package Jeu;
 
+import Items.Arme;
 import Items.Consommable;
+import Personnages.Boss;
 import Personnages.Combattant;
 import Personnages.Hostile;
 import Personnages.Joueur;
@@ -38,7 +40,7 @@ public class Combat {
                 String data = myReader.nextLine();
                 if (i == random) {
 
-                    System.out.println(this.monstre.getNom()+" crie : " + data);
+                    Dialogue.dialogues(this.monstre.getNom()+" crie : " + data);
                 }
                 i++;
 
@@ -55,70 +57,97 @@ public class Combat {
      * @param buffs List of buffs
      */
     public void combatStep(List<Buff> buffs) {
-        System.out.println("Que voulez vous faire ?");
-        System.out.println("1 - Attaquer");
-        System.out.println("2 - Utiliser un consommable");
-        Scanner scanner = new Scanner(System.in);
-        int choix = 0;
-        boolean ex = true;
-        while (ex) {
-            try {
-                choix = scanner.nextInt();
-                ex = false;
-            } catch (InputMismatchException e) {
-                System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                scanner.nextLine();
-            }
-        }
+        if (Boss.isArmor){
+            BuffBoosted buffArmor = new BuffBoosted(0, 2);
+            buffs.add(buffArmor);
+            Dialogue.dialogues("Que voulez vous faire ?");
+            Dialogue.dialogues("1 - Attaquer");
+            Dialogue.dialogues("2 - Utiliser un consommable");
+            int choix = Jeu.ChoixUser(2);
 
-        if (choix == 1) {
-            System.out.println("Vous pouvez :");
-            System.out.println("1 - Attaquer avec votre arme");
-            System.out.println("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
-            int choix2 = 0;
-            ex = true;
-            while (ex) {
-                try {
-                    choix2 = scanner.nextInt();
-                    ex = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                    scanner.nextLine();
+            if (choix == 1) {
+                Dialogue.dialogues("Vous pouvez :");
+                Dialogue.dialogues("1 - Attaquer avec votre arme");
+                Dialogue.dialogues("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
+                int choix2 = Jeu.ChoixUser(2);
+                if (choix2 == 1) {
+                    joueur.attaque(monstre);
+                    joueur.perteVie(25);
+                    Dialogue.dialogues("Vous avez perdu 25 points de vie à en tapant THE STINKY ONE qui avait son armure de puanteur");
+                }
+                else if (choix2 == 2) {
+                    Dialogue.dialogues("Votre attaque est boostée pendant 2 tours");
+                    joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
+                    BuffAttaque buff = new BuffAttaque(1.5, 3);
+                    buffs.add(buff);
                 }
             }
-            if (choix2 == 1) {
-                joueur.attaque(monstre);
-            }
-            else if (choix2 == 2) {
-                System.out.println("Votre attaque est boostée pendant 2 tours");
-                joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
-                BuffAttaque buff = new BuffAttaque(1.5, 3);
-                buffs.add(buff);
-            }
-        }
-        else if (choix == 2) {
-            System.out.println("Que voulez vous utiliser ?");
-            joueur.afficherConsommable();
-            int choix2 = 0;
-            ex = true;
-            while (ex) {
-                try {
-                    choix2 = scanner.nextInt();
-                    ex = false;
-                } catch (InputMismatchException e) {
-                    System.out.println("Veuillez entrer un nombre.\nEntrez le nombre : ");
-                    scanner.nextLine();
+            else if (choix == 2) {
+                Dialogue.dialogues("Que voulez vous utiliser ?");
+                java.util.Map<Integer, Consommable> listeConsommable = joueur.afficherConsommable();
+                int max = 0;
+                for (int key : listeConsommable.keySet()) {
+                    Dialogue.dialogues(key + " - " + listeConsommable.get(key).getNom() + "\n");
+                    max = key;
+                }
+                Dialogue.dialogues((max + 1) + " - Retour\n");
+                int choix2 = Jeu.ChoixUser(listeConsommable.size() + 1);
+
+                if (choix2 != max + 1) {
+                    this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
+                    if (this.boosted) {
+                        BuffBoosted buff = new BuffBoosted(2, 2);
+                        buffs.add(buff);
+                    }
                 }
             }
-
-            this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
-            if (this.boosted) {
-                BuffBoosted buff = new BuffBoosted(2, 2);
-                buffs.add(buff);
+            else if (choix == 3) {
+                combatStep(buffs);
             }
         }
-        else if (choix == 3) {
-            combatStep(buffs);
+        else {
+            Dialogue.dialogues("Que voulez vous faire ?");
+            Dialogue.dialogues("1 - Attaquer");
+            Dialogue.dialogues("2 - Utiliser un consommable");
+            int choix = Jeu.ChoixUser(2);
+
+            if (choix == 1) {
+                Dialogue.dialogues("Vous pouvez :");
+                Dialogue.dialogues("1 - Attaquer avec votre arme");
+                Dialogue.dialogues("2 - Utiliser un sort augmentant votre attaque durant 2 tours");
+                int choix2 = Jeu.ChoixUser(2);
+                if (choix2 == 1) {
+                    joueur.attaque(monstre);
+                }
+                else if (choix2 == 2) {
+                    Dialogue.dialogues("Votre attaque est boostée pendant 2 tours");
+                    joueur.setAttaque((int) (joueur.getAttaque() * 1.5));
+                    BuffAttaque buff = new BuffAttaque(1.5, 3);
+                    buffs.add(buff);
+                }
+            }
+            else if (choix == 2) {
+                Dialogue.dialogues("Que voulez vous utiliser ?");
+                java.util.Map<Integer, Consommable> listeConsommable = joueur.afficherConsommable();
+                int max = 0;
+                for (int key : listeConsommable.keySet()) {
+                    Dialogue.dialogues(key + " - " + listeConsommable.get(key).getNom() + "\n");
+                    max = key;
+                }
+                Dialogue.dialogues((max + 1) + " - Retour\n");
+                int choix2 = Jeu.ChoixUser(listeConsommable.size() + 1);
+
+                if (choix2 != max + 1) {
+                    this.boosted = joueur.utiliserConsommable((Consommable) joueur.getInventaire().get(0).get(choix2 - 1), true);
+                    if (this.boosted) {
+                        BuffBoosted buff = new BuffBoosted(2, 2);
+                        buffs.add(buff);
+                    }
+                }
+            }
+            else if (choix == 3) {
+                combatStep(buffs);
+            }
         }
     }
 
@@ -126,13 +155,13 @@ public class Combat {
      * Function to mange the combat
      */
     public void combat() {
-        System.out.println("Un " + this.monstre.getNom().toLowerCase(Locale.ROOT) + " sauvage apparait, de niveau " + this.monstre.getNiveau() + " !");
+        Dialogue.dialogues("Un " + this.monstre.getNom().toLowerCase(Locale.ROOT) + " sauvage apparait, de niveau " + this.monstre.getNiveau() + " !");
         cri();
         List<Buff> buffs = new ArrayList<>();
         while (joueur.getVie() > 0 && monstre.getVie() > 0) {
 
-            System.out.println("Il vous reste " + joueur.getVie() + " points de vie");
-            System.out.println("Il reste " + monstre.getVie() + " points de vie à " + monstre.getNom());
+            Dialogue.dialogues("Il vous reste " + joueur.getVie() + " points de vie");
+            Dialogue.dialogues("Il reste " + monstre.getVie() + " points de vie à " + monstre.getNom());
 
             boolean ex = true;
 
@@ -161,7 +190,7 @@ public class Combat {
             }
         }
         if (joueur.getVie() > 0) {
-            System.out.println("Vous remportez le combat !");
+            Dialogue.dialogues("Vous remportez le combat !");
             Random rd = new Random();
             int nb = rd.nextInt(40) + 80;
             int nb2 = rd.nextInt(80) + 40;
@@ -174,7 +203,7 @@ public class Combat {
         if (monstre.getVie() > 0) {
             Jeu.end = false;
             Jeu.alive = false;
-            System.out.println("Vous avez été tué par " + monstre.getNom());
+            Dialogue.dialogues("Vous avez été tué par " + monstre.getNom());
         }
     }
 }

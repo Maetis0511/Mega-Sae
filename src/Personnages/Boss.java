@@ -1,12 +1,13 @@
 package Personnages;
 
 import Items.Item;
+import Jeu.Dialogue;
 import Lieux.Salle;
 
 import java.util.Random;
 
 public class Boss extends Hostile{
-    private boolean isArmor;
+    public static boolean isArmor;
 
     /**
      * Boss constructor
@@ -30,31 +31,32 @@ public class Boss extends Hostile{
         if(isArmor){
             if (nb < 50) {
                 c.perteVie(this.getAttaque());
-                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
+                Dialogue.dialogues("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 50 && nb < 85) {
                 c.perteVie((int) (this.getAttaque() * 1.5));
-                System.out.println("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
+                Dialogue.dialogues("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 85) {
                 this.setVie(this.getVie() + (int) (this.getAttaque() * 0.5));
-                System.out.println("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
+                Dialogue.dialogues("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
             }
         }else {
             if (nb < 50) {
                 c.perteVie(this.getAttaque());
-                System.out.println("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
+                Dialogue.dialogues("Vous avez perdu " + this.getAttaque() + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 50 && nb < 70) {
                 c.perteVie((int) (this.getAttaque() * 1.5));
-                System.out.println("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
+                Dialogue.dialogues("Vous avez perdu " + this.getAttaque() * 1.5 + " points de vie de la part de " + this.getNom());
             }
             if (nb >= 70 && nb < 85) {
                 this.setVie(this.getVie() + (int) (this.getAttaque() * 0.5));
-                System.out.println("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
+                Dialogue.dialogues("Le boss s'est soigné de " + this.getAttaque() + " points de vie");
             }
             if (nb >= 85) {
                 this.isArmor = true;
+                Dialogue.dialogues("Vous voyez un nuage vert recouvrir THE STINKY ONE, le nuage a l'air de puer");
             }
         }
     }

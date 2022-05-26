@@ -4,16 +4,18 @@ public class Piege {
     private String name;
     private int damage;
     private boolean isActive;
+    private String dialogue;
 
     /**
      * Trap's constructor
      * @param name Trap's name
      * @param damage Trap's damage
      */
-    public Piege(String name, int damage) {
+    public Piege(String name, int damage, String dialogue) {
         this.name = name;
         this.damage = damage;
-        this.isActive = false;
+        this.isActive = true;
+        this.dialogue = dialogue;
     }
 
     /**
@@ -38,6 +40,10 @@ public class Piege {
      */
     public int getDamage() {
         return this.damage;
+    }
+
+    public String getDialogue() {
+        return this.dialogue;
     }
 
     /**

@@ -33,6 +33,13 @@ public class Graphe<E> {
         }
     }
 
+    public void supprimerArete(E sommet1, E sommet2) {
+        this.listeAdjacence.get(sommet1).remove(sommet2);
+        if(!this.oriente) {
+            this.listeAdjacence.get(sommet2).remove(sommet1);
+        }
+    }
+
     /**
      * Add an edge to the graph
      * @param source the source vertex

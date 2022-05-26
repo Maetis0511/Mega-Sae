@@ -7,7 +7,7 @@ public class Salle {
     private String nom;
     private int id;
     private String description;
-    private List<Piege> pieges;
+    private Piege pieges;
     private int niveauSalle;
 
     /**
@@ -16,10 +16,18 @@ public class Salle {
      * @param description Room's description
      * @param niveauSalle Room's level
      */
+    public Salle(String nom, String description, int niveauSalle, int id, Piege piege) {
+        this.nom = nom;
+        this.description = description;
+        this.pieges = piege;
+        this.niveauSalle = niveauSalle;
+        this.id = id;
+    }
+
     public Salle(String nom, String description, int niveauSalle, int id) {
         this.nom = nom;
         this.description = description;
-        this.pieges = new ArrayList<>();
+        this.pieges = null;
         this.niveauSalle = niveauSalle;
         this.id = id;
     }
@@ -44,7 +52,7 @@ public class Salle {
      *
      * @return Room's traps
      */
-    public List<Piege> getPieges() {
+    public Piege getPiege() {
         return pieges;
     }
 
@@ -52,8 +60,8 @@ public class Salle {
      * Add a trap to the room
      * @param p Trap to add
      */
-    public void addPiege(Piege p) {
-        pieges.add(p);
+    public void setPiege(Piege p) {
+        this.pieges = p;
     }
 
     /**

@@ -7,6 +7,7 @@ import Jeu.Jeu;
 import Lieux.Graphe;
 import Lieux.Map;
 import Lieux.Salle;
+import Jeu.Dialogue;
 
 import java.util.*;
 
@@ -29,7 +30,6 @@ public class Joueur extends Combattant {
         for (int i = 0; i < 2; i++) {
             this.inventaire.add(new ArrayList<>());
         }
-        this.armeActive = armeActive;
 
         this.pos = s;
     }
@@ -75,13 +75,13 @@ public class Joueur extends Combattant {
      * Function to display the player's inventory
      */
     public void afficherInventaire() {
-        System.out.println("1 - Consommables");
+        Dialogue.dialogues("1 - Consommables");
         for (int i = 0; i < inventaire.get(0).size(); i++) {
-            System.out.println((i + 1) + " - " + inventaire.get(0).get(i).getNom());
+            Dialogue.dialogues((i + 1) + " - " + inventaire.get(0).get(i).getNom());
         }
-        System.out.println("2 - Armes");
+        Dialogue.dialogues("2 - Armes");
         for (int i = 0; i < inventaire.get(1).size(); i++) {
-            System.out.println((i + 1) + " - " + inventaire.get(1).get(i).getNom());
+            Dialogue.dialogues((i + 1) + " - " + inventaire.get(1).get(i).getNom());
         }
     }
 
@@ -106,7 +106,7 @@ public class Joueur extends Combattant {
         java.util.Map<Integer, Arme> listeConsommable = new HashMap<>();
         int cpt = 1;
         for (Item i : inventaire.get(1)) {
-            if (i instanceof Arme) {
+            if (i instanceof Arme && i != armeActive) {
                 listeConsommable.put(cpt, (Arme) i);
             }
         }
@@ -117,7 +117,7 @@ public class Joueur extends Combattant {
      * Function to choose a player's weapon
      */
     public void choisirArme(Arme a) {
-        System.out.println("Vous avez équipé " + a.getNom());
+        Dialogue.dialogues("Vous avez équipé " + a.getNom());
         this.armeActive = a;
     }
 
@@ -128,11 +128,11 @@ public class Joueur extends Combattant {
     public void attaque(Combattant c) {
         if (this.armeActive != null) {
             c.perteVie(this.getAttaque() + this.armeActive.getDegats());
-            System.out.println("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + (this.getAttaque() + this.armeActive.getDegats()) + " points de dégats");
+            Dialogue.dialogues("Vous attaquez " + c.getNom() + " avec votre arme et lui avez infligé " + (this.getAttaque() + this.armeActive.getDegats()) + " points de dégats");
         }
         else {
             c.perteVie(this.getAttaque());
-            System.out.println("Vous attaquez " + c.getNom() + " et lui avez infligé " + this.getAttaque() + " points de dégats");
+            Dialogue.dialogues("Vous attaquez " + c.getNom() + " et lui avez infligé " + this.getAttaque() + " points de dégats");
         }
     }
 
@@ -145,7 +145,7 @@ public class Joueur extends Combattant {
     public boolean utiliserConsommable(Consommable conso, boolean inFight) {
         if (conso.getId() == 1) {
             if (this.vie < this.viemax) {
-                System.out.println("Vous avez utilisé " + conso.getNom() + " et vous avez gagné " + conso.getValue() + " points de vie");
+                Dialogue.dialogues("Vous avez utilisé " + conso.getNom() + " et vous avez gagné " + conso.getValue() + " points de vie");
                 this.setVie(this.getVie() + conso.getValue());
                 if(vie>viemax) {
                     this.setVie(viemax);
@@ -154,11 +154,11 @@ public class Joueur extends Combattant {
             return false;
         }
         else if (inFight && conso.getId() == 2) {
-            System.out.println("Vous avez mangé le nachos étrange, sensation étrange, c'est comme si vous pouviez attaquer 2 fois par tour, drôle de sensation");
+            Dialogue.dialogues("Vous avez mangé le nachos étrange, sensation étrange, c'est comme si vous pouviez attaquer 2 fois par tour, drôle de sensation");
             return true;
         }
         else if (!inFight && conso.getId() == 2) {
-            System.out.println("Vous ne pouvez pas mangé le nachos étrange ici, gardez le pour un combat ou vous aurez faim");
+            Dialogue.dialogues("Vous ne pouvez pas mangé le nachos étrange ici, gardez le pour un combat ou vous aurez faim");
             return false;
         }
         return false;
@@ -174,6 +174,15 @@ public class Joueur extends Combattant {
         for (Salle salle : map.getVoisins(this.pos)) {
             if (salle.getNom().equals(s.getNom())) {
                 if (s.getId() != 5) {
+                    if (s.getPiege() != null && s.getPiege().isActive()){
+                        s.getPiege().setActive(false);
+                        map.supprimerArete(this.pos, s);
+                        Dialogue.dialogues(s.getPiege().getDialogue());
+                        if (s.getPiege().getDamage() > 0) {
+                            this.perteVie(s.getPiege().getDamage());
+                            Dialogue.dialogues("Vous avez perdu " + s.getPiege().getDamage() + " points de vie à cause du piège");
+                        }
+                    }
                     this.pos = salle;
                     if (salle.getId() == 1) {
                         Random rd = new Random();
@@ -284,13 +293,13 @@ public class Joueur extends Combattant {
                         return true;
                     }
                     else {
-                        System.out.println("Il semblerait que la porte soit verrouillée, il y a une serrure sur la porte.");
+                        Dialogue.dialogues("Il semblerait que la porte soit verrouillée, il y a une serrure sur la porte.");
                         return false;
                     }
                 }
             }
         }
-        System.out.println("Cette salle n'est pas accessible");
+        Dialogue.dialogues("Cette salle n'est pas accessible");
         return false;
     }
 
@@ -298,7 +307,7 @@ public class Joueur extends Combattant {
      * Function to display the room where the player is
      */
     public void afficherPosition() {
-        System.out.println(this.pos.getNom());
+        Dialogue.dialogues(this.pos.getNom());
     }
 
     /**
@@ -318,12 +327,12 @@ public class Joueur extends Combattant {
     public void acheterItem(Marchand m, Arme a) {
         if (this.or >= a.getPrix()) {
             m.vendreItem(a);
-            System.out.println("Vous avez acheté " + a.getNom() + " pour " + a.getPrix() + " pièces d'or");
+            Dialogue.dialogues("Vous avez acheté " + a.getNom() + " pour " + a.getPrix() + " pièces d'or");
             this.inventaire.get(1).add(a);
             this.or -= a.getPrix();
         }
         else {
-            System.out.println("Vous n'avez pas assez d'or pour acheter cet item");
+            Dialogue.dialogues("Vous n'avez pas assez d'or pour acheter cet item");
         }
     }
 
@@ -340,7 +349,7 @@ public class Joueur extends Combattant {
      * @param or the money to add
      */
     public void ajouterOr(int or) {
-        System.out.println("Vous avez gagnez " + or + " pièces d'or");
+        Dialogue.dialogues("Vous avez gagnez " + or + " pièces d'or");
         this.or = this.or+or;
     }
 
@@ -351,36 +360,6 @@ public class Joueur extends Combattant {
     public void retirerOr(int or) {
         this.or = this.or-or;
     }
-
-    /**
-     * Function to buy from a trader
-     * @param m the trader
-     */
-    public void achatMarchand(Marchand m) {
-
-        System.out.println("Que voulez vous acheter ?");
-        for (int i = 0; i < m.getInventaire().size(); i++) {
-            System.out.println(i+1 + "- " + m.getInventaire().get(i).getNom());
-        }
-        boolean fini = true;
-        Scanner scanner = new Scanner(System.in);
-        while (fini) {
-            try {
-                int choix = scanner.nextInt() - 1 % m.getInventaire().size() + 1;
-                if (m.getInventaire().get(choix).getPrix() <= this.or) {
-                    this.ajouterItem(m.getInventaire().get(choix));
-                    m.getInventaire().remove(choix);
-                    this.retirerOr(m.getInventaire().get(choix).getPrix());
-                    fini = false;
-                }
-            } catch (Exception e) {
-                System.out.println("Veuillez entrer un nombre");
-                scanner.nextLine();
-            }
-        }
-
-
-        }
 
     /**
      * @return true if the player is alive
