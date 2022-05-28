@@ -95,6 +95,7 @@ public class Joueur extends Combattant {
             if (i instanceof Consommable) {
                 listeConsommable.put(cpt, (Consommable) i);
             }
+            cpt++;
         }
         return listeConsommable;
     }
@@ -109,6 +110,7 @@ public class Joueur extends Combattant {
             if (i instanceof Arme && i != armeActive) {
                 listeConsommable.put(cpt, (Arme) i);
             }
+            cpt++;
         }
         return listeConsommable;
     }
